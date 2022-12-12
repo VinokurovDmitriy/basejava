@@ -6,14 +6,15 @@ import java.util.Arrays;
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
     private int count = 0;
+
     void clear() {
-        Arrays.fill(storage, 0, count,null);
+        Arrays.fill(storage, 0, count, null);
         count = 0;
     }
 
     void save(Resume r) {
         int index = findIndex(r.uuid);
-        if(index < 0) {
+        if (index < 0) {
             storage[count] = r;
             count++;
         } else {
@@ -28,9 +29,9 @@ public class ArrayStorage {
 
     void delete(String uuid) {
         int index = findIndex(uuid);
-        if(storage[index].uuid.equals(uuid)) {
-            System.arraycopy(storage, index + 1, storage, index, count - index - 1);
+        if (storage[index].uuid.equals(uuid)) {
             count--;
+            System.arraycopy(storage, index + 1, storage, index, count - index);
             storage[count] = null;
         }
     }
@@ -47,8 +48,8 @@ public class ArrayStorage {
     }
 
     private int findIndex(String uuid) {
-        for(int i = 0; i < count; i++) {
-            if(storage[i].uuid.equals(uuid)) {
+        for (int i = 0; i < count; i++) {
+            if (storage[i].uuid.equals(uuid)) {
                 return i;
             }
         }
