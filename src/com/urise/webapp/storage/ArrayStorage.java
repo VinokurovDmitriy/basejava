@@ -44,7 +44,7 @@ public class ArrayStorage {
         if (index >= 0) {
             return storage[index];
         }
-        System.out.printf("%ncom.urise.webapp.model.Resume with uuid %s is not exists", uuid);
+        System.out.printf("%ncom.urise.webapp.model.Resume with uuid %s is not exists%n", uuid);
         return null;
     }
 
@@ -72,7 +72,7 @@ public class ArrayStorage {
 
     private int findIndex(String uuid) {
         for (int i = 0; i < count; i++) {
-            if (storage[i].getUuid().equals(uuid)) {
+            if (storage[i].getUuid() == uuid) {
                 return i;
             }
         }
