@@ -9,8 +9,8 @@ import java.util.Arrays;
  */
 public class ArrayStorage {
 
-    private final static int MAX_COUNT = 10000;
-    Resume[] storage = new Resume[MAX_COUNT];
+    private final int MAX_COUNT = 10000;
+    private final Resume[] storage = new Resume[MAX_COUNT];
     private int count = 0;
 
     public void clear() {
@@ -19,12 +19,10 @@ public class ArrayStorage {
     }
 
     public void save(Resume r) {
+        String uuid = r.getUuid();
         if (count == MAX_COUNT - 1) {
             System.out.println("The maximum number of resume has been reached");
-            return;
-        }
-        String uuid = r.getUuid();
-        if (findIndex(uuid) < 0) {
+        } else if(findIndex(uuid) < 0) {
             storage[count] = r;
             count++;
         } else {
@@ -32,12 +30,12 @@ public class ArrayStorage {
         }
     }
 
-    public void update(String oldUuid, String newUuid) {
-        int index = findIndex(oldUuid);
+    public void update(Resume r) {
+        int index = findIndex(r.getUuid());
         if (index >= 0) {
-            storage[index].setUuid(newUuid);
+            storage[index] = r;
         } else {
-            System.out.printf("%ncom.urise.webapp.model.Resume with uuid %s is not exists", oldUuid);
+            System.out.printf("%ncom.urise.webapp.model.Resume with uuid %s is not exists", r.getUuid());
         }
     }
 
@@ -46,6 +44,7 @@ public class ArrayStorage {
         if (index >= 0) {
             return storage[index];
         }
+        System.out.printf("%ncom.urise.webapp.model.Resume with uuid %s is not exists", uuid);
         return null;
     }
 
@@ -53,7 +52,7 @@ public class ArrayStorage {
         int index = findIndex(uuid);
         if (storage[index].getUuid().equals(uuid)) {
             count--;
-            System.arraycopy(storage, index + 1, storage, index, count - index);
+            storage[index] = storage[count];
             storage[count] = null;
         } else {
             System.out.println("com.urise.webapp.model.Resume with this uuid is not exists");

@@ -44,7 +44,9 @@ public class MainArray {
                 case "update":
                     System.out.println("Enter new uuid");
                     String newUuid = reader.readLine();
-                    ARRAY_STORAGE.update(uuid, newUuid);
+                    r = new Resume();
+                    r.setUuid(uuid);
+                    ARRAY_STORAGE.update(r);
                     printAll();
                     break;
                 case "delete":
