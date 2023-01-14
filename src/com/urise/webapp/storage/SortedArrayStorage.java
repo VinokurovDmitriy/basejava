@@ -15,8 +15,8 @@ public class SortedArrayStorage extends AbstractArrayStorage implements Storage{
         return Arrays.binarySearch(storage, 0, count, searchKey);
     }
 
-    public void insertResume(Resume r, int index) {
-        index = -(index + 1);
+    public void insertResume(Resume r) {
+        int index = -(getIndex(r.getUuid()) + 1);
         Resume movableResume = storage[index];
         storage[index] = r;
         storage[count] = movableResume;

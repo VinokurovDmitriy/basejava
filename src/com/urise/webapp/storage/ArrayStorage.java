@@ -19,5 +19,5 @@ public class ArrayStorage extends AbstractArrayStorage implements Storage{
         return -1;
     }
 
-    protected void insertResume(Resume r, int index) {storage[count] = r;}
+    protected void insertResume(Resume r) {storage[count] = r;}
 }
