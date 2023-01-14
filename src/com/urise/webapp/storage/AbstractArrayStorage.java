@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public abstract class AbstractArrayStorage implements Storage{
 
-    protected final int MAX_COUNT = 10000;
+    protected static final int MAX_COUNT = 10000;
     protected Resume[] storage = new Resume[MAX_COUNT];
     protected int count = 0;
 
