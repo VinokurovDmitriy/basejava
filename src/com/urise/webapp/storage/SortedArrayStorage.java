@@ -9,12 +9,14 @@ import java.util.Arrays;
  */
 public class SortedArrayStorage extends AbstractArrayStorage implements Storage{
 
+    @Override
     protected int getIndex(String uuid) {
         Resume searchKey = new Resume();
         searchKey.setUuid(uuid);
         return Arrays.binarySearch(storage, 0, count, searchKey);
     }
 
+    @Override
     public void insertResume(Resume r) {
         int index = -(getIndex(r.getUuid()) + 1);
         Resume movableResume = storage[index];

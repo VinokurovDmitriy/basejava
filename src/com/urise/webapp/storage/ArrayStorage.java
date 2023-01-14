@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class ArrayStorage extends AbstractArrayStorage implements Storage{
 
-
+    @Override
     protected int getIndex(String uuid) {
         for (int i = 0; i < count; i++) {
             if (storage[i].getUuid() == uuid) {
@@ -19,5 +19,6 @@ public class ArrayStorage extends AbstractArrayStorage implements Storage{
         return -1;
     }
 
+    @Override
     protected void insertResume(Resume r) {storage[count] = r;}
 }
