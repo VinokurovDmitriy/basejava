@@ -22,10 +22,11 @@ public abstract class AbstractArrayStorage implements Storage{
     @Override
     public void save(Resume r) {
         String uuid = r.getUuid();
+        int index = getIndex(uuid);
         if (count == MAX_COUNT - 1) {
             System.out.println("The maximum number of resume has been reached");
         } else if(getIndex(uuid) < 0) {
-            insertResume(r);
+            insertResume(r, index);
             count++;
         } else {
             System.out.printf("%ncom.urise.webapp.model.Resume with uuid %s already exists", uuid);
@@ -75,5 +76,5 @@ public abstract class AbstractArrayStorage implements Storage{
 
     protected abstract int getIndex(String uuid);
 
-    protected abstract void insertResume(Resume r);
+    protected abstract void insertResume(Resume r, int index);
 }
