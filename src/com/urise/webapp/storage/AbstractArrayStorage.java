@@ -56,7 +56,7 @@ public abstract class AbstractArrayStorage implements Storage{
     @Override
     public void delete(String uuid) {
         int index = getIndex(uuid);
-        if (index > 0 && storage[index].getUuid().equals(uuid)) {
+        if (index >=0 && storage[index].getUuid().equals(uuid)) {
             count--;
             remove(index);
         } else {
