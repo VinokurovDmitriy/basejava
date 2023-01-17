@@ -18,11 +18,17 @@ public class SortedArrayStorage extends AbstractArrayStorage implements Storage{
 
     @Override
     public void insertResume(Resume r, int index) {
-        index = -(index + 1);
-        if(storage[index] != null){
-            storage[count] = storage[index];
+        int destinationIndex = -(index + 1);
+        //Не могу понять почему это не работает? Все лргично вроде. Элемент который сейчас на нужном индексе вставляем в конец
+//        а на его место вставляем новое резюме по указанному индексу. ЧЯДНТ?
+//        if(storage[index] != null){
+//            storage[count] = storage[index];
+//        }
+//        storage[index] = r;
+        if(count > 0) {
+            System.arraycopy(storage, destinationIndex, storage, -index, count - index);
         }
-        storage[index] = r;
+        storage[destinationIndex] = r;
     }
 
     @Override
