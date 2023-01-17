@@ -21,7 +21,7 @@ public class ArrayStorage extends AbstractArrayStorage implements Storage{
     protected void insertResume(Resume r, int index) {storage[count] = r;}
 
     @Override
-    protected void remove(int index, String uuid) {
+    protected void remove(int index) {
         storage[index] = storage[count];
         storage[count] = null;
     }
