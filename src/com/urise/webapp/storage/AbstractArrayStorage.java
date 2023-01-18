@@ -58,7 +58,8 @@ public abstract class AbstractArrayStorage implements Storage{
         int index = getIndex(uuid);
         if (index >=0 && storage[index].getUuid().equals(uuid)) {
             count--;
-            remove(index);
+            removeResume(index);
+            storage[count] = null;
         } else {
             System.out.println("com.urise.webapp.model.Resume with uuid " + index + " is not exists");
         }
@@ -77,5 +78,5 @@ public abstract class AbstractArrayStorage implements Storage{
 
     protected abstract void insertResume(Resume r, int index);
 
-    protected abstract void remove(int index);
+    protected abstract void removeResume(int index);
 }
