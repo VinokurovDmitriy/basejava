@@ -1,20 +1,20 @@
 package com.urise.webapp.model;
 
+import java.util.UUID;
+
 /**
  * Initial resume class
  */
 public class Resume implements Comparable<Resume>{
 
     // Unique identifier
-    String uuid;
+    private final String uuid;
 
-    public String getUuid() {
-        return uuid;
-    }
+    public Resume(String uuid) {this.uuid = uuid;}
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
+    public Resume() {this(UUID.randomUUID().toString());}
+
+    public String getUuid() {return uuid;}
 
     @Override
     public boolean equals(Object o) {
@@ -25,17 +25,11 @@ public class Resume implements Comparable<Resume>{
     }
 
     @Override
-    public int hashCode() {
-        return uuid.hashCode();
-    }
+    public int hashCode() {return uuid.hashCode();}
 
     @Override
-    public String toString() {
-        return uuid;
-    }
+    public String toString() {return uuid;}
 
     @Override
-    public int compareTo(Resume o) {
-        return uuid.compareTo(o.getUuid());
-    }
+    public int compareTo(Resume o) {return uuid.compareTo(o.getUuid());}
 }

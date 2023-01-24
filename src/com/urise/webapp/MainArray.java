@@ -29,42 +29,29 @@ public class MainArray {
                 uuid = params[1].intern();
             }
             switch (params[0]) {
-                case "list":
+                case "list" -> printAll();
+                case "size" -> System.out.println(ARRAY_STORAGE.getCount());
+                case "save" -> {
+                    ARRAY_STORAGE.save(new Resume(uuid));
                     printAll();
-                    break;
-                case "size":
-                    System.out.println(ARRAY_STORAGE.getCount());
-                    break;
-                case "save":
-                    r = new Resume();
-                    r.setUuid(uuid);
-                    ARRAY_STORAGE.save(r);
+                }
+                case "update" -> {
+                    ARRAY_STORAGE.update(new Resume(uuid));
                     printAll();
-                    break;
-                case "update":
-                    System.out.println("Enter new uuid");
-                    String newUuid = reader.readLine();
-                    r = new Resume();
-                    r.setUuid(uuid);
-                    ARRAY_STORAGE.update(r);
-                    printAll();
-                    break;
-                case "delete":
+                }
+                case "delete" -> {
                     ARRAY_STORAGE.delete(uuid);
                     printAll();
-                    break;
-                case "get":
-                    System.out.println(ARRAY_STORAGE.get(uuid));
-                    break;
-                case "clear":
+                }
+                case "get" -> System.out.println(ARRAY_STORAGE.get(uuid));
+                case "clear" -> {
                     ARRAY_STORAGE.clear();
                     printAll();
-                    break;
-                case "exit":
+                }
+                case "exit" -> {
                     return;
-                default:
-                    System.out.println("Неверная команда.");
-                    break;
+                }
+                default -> System.out.println("Неверная команда.");
             }
         }
     }

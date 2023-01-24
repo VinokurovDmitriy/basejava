@@ -1,5 +1,8 @@
 package com.urise.webapp.storage;
 
+import com.urise.webapp.exception.ExistStorageException;
+import com.urise.webapp.exception.NotExistStorageException;
+import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
@@ -24,22 +27,23 @@ public abstract class AbstractArrayStorage implements Storage{
         String uuid = r.getUuid();
         int index = getIndex(uuid);
         if (count == MAX_COUNT - 1) {
-            System.out.println("The maximum number of resume has been reached");
+            throw new StorageException("The maximum number of resume has been reached", uuid);
         } else if(getIndex(uuid) < 0) {
             insertResume(r, index);
             count++;
         } else {
-            System.out.printf("%ncom.urise.webapp.model.Resume with uuid %s already exists", uuid);
+            throw new ExistStorageException(uuid);
         }
     }
 
     @Override
     public void update(Resume r) {
-        int index = getIndex(r.getUuid());
+        String uuid = r.getUuid();
+        int index = getIndex(uuid);
         if (index >= 0) {
             storage[index] = r;
         } else {
-            System.out.printf("%ncom.urise.webapp.model.Resume with uuid %s is not exists", r.getUuid());
+            throw new NotExistStorageException(uuid);
         }
     }
 
@@ -49,10 +53,8 @@ public abstract class AbstractArrayStorage implements Storage{
         if (index >= 0) {
             return storage[index];
         }
-        System.out.printf("%ncom.urise.webapp.model.Resume with uuid %s is not exists%n", uuid);
-        return null;
+        throw new NotExistStorageException(uuid);
     }
-
     @Override
     public void delete(String uuid) {
         int index = getIndex(uuid);
@@ -61,7 +63,7 @@ public abstract class AbstractArrayStorage implements Storage{
             removeResume(index);
             storage[count] = null;
         } else {
-            System.out.println("com.urise.webapp.model.Resume with uuid " + index + " is not exists");
+            throw new NotExistStorageException(uuid);
         }
     }
 

@@ -26,3 +26,4 @@ public class ArrayStorage extends AbstractArrayStorage implements Storage{
         storage[index] = storage[count];
     }
 }
+
