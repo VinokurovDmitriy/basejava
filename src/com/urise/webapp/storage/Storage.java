@@ -2,24 +2,22 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
-import java.util.Arrays;
-
 /**
  * Array based storage for Resumes
  */
 public interface Storage {
 
-    public void clear();
+    void clear();
 
-    public void save(Resume r);
+    void save(Resume r);
 
-    public void update(Resume r);
+    void update(Resume r);
 
-    public Resume get(String uuid);
+    Resume get(String uuid);
 
-    public void delete(String uuid);
+    void delete(String uuid);
 
-    public Resume[] getAll();
+    Resume[] getAll();
 
-    public int getCount();
+    int size();
 }

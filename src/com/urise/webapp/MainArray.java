@@ -30,7 +30,7 @@ public class MainArray {
             }
             switch (params[0]) {
                 case "list" -> printAll();
-                case "size" -> System.out.println(ARRAY_STORAGE.getCount());
+                case "size" -> System.out.println(ARRAY_STORAGE.size());
                 case "save" -> {
                     ARRAY_STORAGE.save(new Resume(uuid));
                     printAll();

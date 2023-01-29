@@ -74,7 +74,7 @@ public abstract class AbstractArrayStorage implements Storage{
     public Resume[] getAll() {return Arrays.copyOf(storage, count);}
 
     @Override
-    public int getCount() {return count;}
+    public int size() {return count;}
 
     protected abstract int getIndex(String uuid);
 
