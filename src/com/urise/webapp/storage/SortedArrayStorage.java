@@ -7,7 +7,7 @@ import java.util.Arrays;
 /**
  * Array based storage for Resumes
  */
-public class SortedArrayStorage extends AbstractArrayStorage implements Storage{
+public class SortedArrayStorage extends AbstractArrayStorage implements Storage {
 
     @Override
     protected int getIndex(String uuid) {
@@ -18,10 +18,11 @@ public class SortedArrayStorage extends AbstractArrayStorage implements Storage{
     @Override
     public void insertResume(Resume r, int index) {
         int destinationIndex = -(index + 1);
-        if(count > 0) {
-            System.arraycopy(storage, destinationIndex, storage, -index, count - index);
+        if (destinationIndex != count) {
+            System.arraycopy(storage, destinationIndex, storage, destinationIndex + 1, count - destinationIndex);
         }
         storage[destinationIndex] = r;
+        System.out.println(destinationIndex + " " + count);
     }
 
     @Override

@@ -117,9 +117,10 @@ public abstract class AbstractArrayStorageTest {
             try{
                 storage.save(new Resume());
             } catch (StorageException e){
-                Assert.fail("Ошибка сохранения резюме. " + e);
+                Assert.fail("Ошибка сохранения резюме. Хранилище переполненно " + e);
             }
         }
+        assertSize(MAX_COUNT);
         storage.save(new Resume());
     }
     private void assertSize(int size) {

@@ -26,9 +26,9 @@ public abstract class AbstractArrayStorage implements Storage{
     public void save(Resume r) {
         String uuid = r.getUuid();
         int index = getIndex(uuid);
-        if (count == MAX_COUNT - 1) {
+        if (count == MAX_COUNT) {
             throw new StorageException("The maximum number of resume has been reached", uuid);
-        } else if(getIndex(uuid) < 0) {
+        } else if(index < 0) {
             insertResume(r, index);
             count++;
         } else {
