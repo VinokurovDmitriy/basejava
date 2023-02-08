@@ -6,12 +6,12 @@ import com.urise.webapp.model.Resume;
 /**
  * Array based storage for Resumes
  */
-public class ArrayStorage extends AbstractArrayStorage implements Storage{
+public class ArrayStorage extends AbstractArrayStorage {
 
     @Override
-    protected int getIndex(String uuid) {
+    protected Integer getResumeKey(String uuid) {
         for (int i = 0; i < count; i++) {
-            if (storage[i].getUuid().equals(uuid)) {
+            if (storage[i] != null && storage[i].getUuid().equals(uuid)) {
                 return i;
             }
         }
@@ -19,11 +19,15 @@ public class ArrayStorage extends AbstractArrayStorage implements Storage{
     }
 
     @Override
-    protected void insertResume(Resume r, int index) {storage[count] = r;}
+    protected void insertResume(Resume r, Object resumeKey) {
+        checkOverflow();
+        storage[count++] = r;
+    }
 
     @Override
-    protected void removeResume(int index) {
-        storage[index] = storage[count];
+    protected void removeResume(Object resumeKey) {
+        System.out.println(resumeKey);
+        storage[(int) resumeKey] = storage[count--];
     }
 }
 
