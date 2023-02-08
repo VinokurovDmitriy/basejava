@@ -26,7 +26,6 @@ public class ArrayStorage extends AbstractArrayStorage {
 
     @Override
     protected void removeResume(Object resumeKey) {
-        System.out.println(resumeKey);
         storage[(int) resumeKey] = storage[count--];
     }
 }

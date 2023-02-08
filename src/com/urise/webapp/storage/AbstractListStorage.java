@@ -1,5 +1,6 @@
 package com.urise.webapp.storage;
 
+import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public abstract class AbstractListStorage extends AbstractStorage {
     @Override
     protected boolean isExistResume(Object resumeKey) {
         try{
-            return storage.get((int) resumeKey).getUuid() != null;
+            return storage.get((int) resumeKey) != null;
         } catch (IndexOutOfBoundsException e) {
             return false;
         }

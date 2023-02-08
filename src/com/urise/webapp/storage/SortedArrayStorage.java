@@ -23,7 +23,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
             System.arraycopy(storage, destinationIndex, storage, destinationIndex + 1, count - destinationIndex);
         }
         storage[destinationIndex] = r;
-        System.out.println(destinationIndex + " " + (count++));
+        count++;
     }
 
     @Override
