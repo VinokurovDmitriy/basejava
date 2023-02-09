@@ -16,7 +16,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    protected void insertResume(Resume r, Object resumeKey) {
+    protected void doSave(Resume r, Object resumeKey) {
         checkOverflow();
         int destinationIndex = -((int) resumeKey + 1);
         if (destinationIndex != count) {
@@ -27,7 +27,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    protected void removeResume(Object resumeKey) {
+    protected void doDelete(Object resumeKey) {
         int index = (int) resumeKey;
         System.arraycopy(storage, index + 1, storage, index, (count--) - index);
     }

@@ -13,7 +13,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 
-public abstract class AbstractArrayStorageTest {
+public abstract class AbstractStorageTest {
 
     private final Storage storage;
     private static final String UUID_1 = "uuid_1";
@@ -27,7 +27,7 @@ public abstract class AbstractArrayStorageTest {
     private static final String DUMMY = "dummy";
 
 
-    public AbstractArrayStorageTest(Storage storage) {
+    public AbstractStorageTest(Storage storage) {
         this.storage = storage;
     }
 

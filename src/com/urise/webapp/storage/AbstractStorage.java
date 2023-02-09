@@ -11,47 +11,48 @@ public abstract class AbstractStorage implements Storage {
 
     protected abstract Object getResumeKey(String uuid);
     protected abstract boolean isExistResume(Object resumeKey);
-    protected abstract void insertResume(Resume r, Object resumeKey);
-    protected abstract void updateResume(Resume r, Object resumeKey);
-    protected abstract Resume getResume(Object resumeKey);
-    protected abstract void removeResume(Object resumeKey);
+    protected abstract void doSave(Resume r, Object resumeKey);
+    protected abstract void doUppdate(Resume r, Object resumeKey);
+    protected abstract Resume doGet(Object resumeKey);
+    protected abstract void doDelete(Object resumeKey);
     @Override
     public void save(Resume r) {
-        String uuid = r.getUuid();
-        Object resumeKey = getResumeKey(uuid);
-        if (!isExistResume(resumeKey)) {
-            insertResume(r, resumeKey);
-        } else {
-            throw new ExistStorageException(uuid);
-        }
+        Object searchKey = getNotExistingSearchKey(r);
+        doSave(r, searchKey);
     }
 
     @Override
     public void update(Resume r) {
-        String uuid = r.getUuid();
-        Object resumeKey = getResumeKey(uuid);
-        if (isExistResume(resumeKey)) {
-            updateResume(r, resumeKey);
-        } else {
-            throw new NotExistStorageException(uuid);
-        }
+        Object searchKey = getExistingSearchKey(r.getUuid());
+        doUppdate(r, searchKey);
     }
 
     @Override
     public Resume get(String uuid) {
-        Object resumeKey = getResumeKey(uuid);
-        if (isExistResume(resumeKey)) {
-            return getResume(resumeKey);
-        }
-        throw new NotExistStorageException(uuid);
+        Object searchKey = getExistingSearchKey(uuid);
+        return doGet(searchKey);
     }
     @Override
     public void delete(String uuid) {
+        Object searchKey = getExistingSearchKey(uuid);
+        doDelete(searchKey);
+    }
+
+    private Object getExistingSearchKey(String uuid) {
         Object resumeKey = getResumeKey(uuid);
         if (isExistResume(resumeKey)) {
-           removeResume(resumeKey);
+            return resumeKey;
         } else {
             throw new NotExistStorageException(uuid);
+        }
+    }
+    private Object getNotExistingSearchKey(Resume r) {
+        String uuid = r.getUuid();
+        Object resumeKey = getResumeKey(uuid);
+        if (!isExistResume(resumeKey)) {
+            return resumeKey;
+        } else {
+            throw new ExistStorageException(uuid);
         }
     }
 }

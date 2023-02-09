@@ -19,13 +19,13 @@ public class ArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    protected void insertResume(Resume r, Object resumeKey) {
+    protected void doSave(Resume r, Object resumeKey) {
         checkOverflow();
         storage[count++] = r;
     }
 
     @Override
-    protected void removeResume(Object resumeKey) {
+    protected void doDelete(Object resumeKey) {
         storage[(int) resumeKey] = storage[count--];
     }
 }
