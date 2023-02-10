@@ -31,7 +31,7 @@ public abstract class AbstractArrayStorage extends AbstractStorage{
     }
 
     @Override
-    protected void doUppdate(Resume r, Object resumeKey) {
+    protected void doUpdate(Resume r, Object resumeKey) {
         storage[(int) resumeKey] = r;
     }
 

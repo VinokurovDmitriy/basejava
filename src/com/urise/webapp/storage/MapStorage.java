@@ -23,7 +23,7 @@ public class MapStorage extends AbstractStorage {
     protected void doSave(Resume r, Object resumeKey) {storage.put(resumeKey, r);}
 
     @Override
-    protected void doUppdate(Resume r, Object resumeKey) {storage.put(resumeKey, r);}
+    protected void doUpdate(Resume r, Object resumeKey) {storage.put(resumeKey, r);}
 
     @Override
     protected Resume doGet(Object resumeKey) {return storage.get(resumeKey);}

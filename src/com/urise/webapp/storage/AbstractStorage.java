@@ -12,7 +12,7 @@ public abstract class AbstractStorage implements Storage {
     protected abstract Object getResumeKey(String uuid);
     protected abstract boolean isExistResume(Object resumeKey);
     protected abstract void doSave(Resume r, Object resumeKey);
-    protected abstract void doUppdate(Resume r, Object resumeKey);
+    protected abstract void doUpdate(Resume r, Object resumeKey);
     protected abstract Resume doGet(Object resumeKey);
     protected abstract void doDelete(Object resumeKey);
     @Override
@@ -24,7 +24,7 @@ public abstract class AbstractStorage implements Storage {
     @Override
     public void update(Resume r) {
         Object searchKey = getExistingSearchKey(r.getUuid());
-        doUppdate(r, searchKey);
+        doUpdate(r, searchKey);
     }
 
     @Override
