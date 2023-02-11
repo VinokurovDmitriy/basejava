@@ -3,13 +3,15 @@ package com.urise.webapp.storage;
 import com.urise.webapp.model.Resume;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Array based storage for Resumes
  */
 public class ListStorage extends AbstractStorage{
 
-    ArrayList<Resume> storage = new ArrayList<>();
+    private final List<Resume> storage = new ArrayList<>();
+
     @Override
     protected Integer getResumeKey(String uuid) {
         for (int i = 0; i < storage.size(); i++) {
@@ -22,11 +24,7 @@ public class ListStorage extends AbstractStorage{
 
     @Override
     protected boolean isExistResume(Object resumeKey) {
-        try{
-            return storage.get((int) resumeKey) != null;
-        } catch(IndexOutOfBoundsException e) {
-            return false;
-        }
+        return (int) resumeKey >= 0;
     }
 
     @Override
@@ -60,7 +58,6 @@ public class ListStorage extends AbstractStorage{
 
     @Override
     public Resume[] getAll() {
-        int size = storage.size();
-        return storage.toArray(new Resume[size]);
+        return storage.toArray(new Resume[0]);
     }
 }

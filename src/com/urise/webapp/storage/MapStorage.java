@@ -10,33 +10,50 @@ import java.util.Map;
  */
 public class MapStorage extends AbstractStorage {
 
-    Map<Object, Resume> storage = new HashMap<>();
-    @Override
-    protected String getResumeKey(String uuid) {return uuid;}
+    private final Map<Object, Resume> storage = new HashMap<>();
 
     @Override
-    protected boolean isExistResume(Object resumeKey) {return storage.containsKey(resumeKey);}
+    protected String getResumeKey(String uuid) {
+        return uuid;
+    }
 
     @Override
-    public int getSize() {return storage.size();}
-    @Override
-    protected void doSave(Resume r, Object resumeKey) {storage.put(resumeKey, r);}
+    protected boolean isExistResume(Object resumeKey) {
+        return storage.containsKey(resumeKey);
+    }
 
     @Override
-    protected void doUpdate(Resume r, Object resumeKey) {storage.put(resumeKey, r);}
+    public int getSize() {
+        return storage.size();
+    }
 
     @Override
-    protected Resume doGet(Object resumeKey) {return storage.get(resumeKey);}
+    protected void doSave(Resume r, Object resumeKey) {
+        storage.put(resumeKey, r);
+    }
 
     @Override
-    protected void doDelete(Object resumeKey) {storage.remove(resumeKey);}
+    protected void doUpdate(Resume r, Object resumeKey) {
+        storage.put(resumeKey, r);
+    }
 
     @Override
-    public void clear() {storage.clear();}
+    protected Resume doGet(Object resumeKey) {
+        return storage.get(resumeKey);
+    }
+
+    @Override
+    protected void doDelete(Object resumeKey) {
+        storage.remove(resumeKey);
+    }
+
+    @Override
+    public void clear() {
+        storage.clear();
+    }
 
     @Override
     public Resume[] getAll() {
-        int size = storage.size();
-        return storage.values().toArray(new Resume[size]);
+        return storage.values().toArray(new Resume[0]);
     }
 }
