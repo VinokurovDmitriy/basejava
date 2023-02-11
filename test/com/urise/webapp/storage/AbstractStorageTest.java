@@ -83,7 +83,7 @@ public abstract class AbstractStorageTest {
     @Test
     public void getAll() {
         assertSize(3);
-        Resume[] expected = new Resume[] {resume_1, resume_2, resume_3};
+        Resume[] expected = new Resume[]{resume_1, resume_2, resume_3};
         assertArrayEquals(expected, storage.getAll());
 
     }
@@ -110,6 +110,7 @@ public abstract class AbstractStorageTest {
         assertSize(3);
         storage.update(new Resume(DUMMY));
     }
+
     @Test(expected = NotExistStorageException.class)
     public void deleteNotExist() {
         assertSize(3);
@@ -120,15 +121,16 @@ public abstract class AbstractStorageTest {
     public void storageOverflow() {
         clear();
         for (int i = 0; i < MAX_COUNT; i++) {
-            try{
+            try {
                 storage.save(new Resume());
-            } catch (StorageException e){
+            } catch (StorageException e) {
                 Assert.fail("Ошибка сохранения резюме. Хранилище переполненно " + e);
             }
         }
         assertSize(MAX_COUNT);
         storage.save(new Resume());
     }
+
     private void assertSize(int size) {
         assertEquals(size, storage.getSize());
     }

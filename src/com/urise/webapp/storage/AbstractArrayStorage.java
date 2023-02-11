@@ -8,7 +8,7 @@ import java.util.Arrays;
 /**
  * Array based storage for Resumes
  */
-public abstract class AbstractArrayStorage extends AbstractStorage{
+public abstract class AbstractArrayStorage extends AbstractStorage {
 
     protected static final int MAX_COUNT = 10000;
     protected Resume[] storage = new Resume[MAX_COUNT];
@@ -21,9 +21,14 @@ public abstract class AbstractArrayStorage extends AbstractStorage{
     }
 
     @Override
-    public Resume[] getAll() {return Arrays.copyOf(storage, count);}
+    public Resume[] getAll() {
+        return Arrays.copyOf(storage, count);
+    }
+
     @Override
-    public int getSize() {return count;}
+    public int getSize() {
+        return count;
+    }
 
     @Override
     protected boolean isExistResume(Object resumeKey) {
@@ -40,9 +45,8 @@ public abstract class AbstractArrayStorage extends AbstractStorage{
         return storage[(int) resumeKey];
     }
 
-    protected void checkOverflow()
-    {
-        if(count == MAX_COUNT) {
+    protected void checkOverflow() {
+        if (count == MAX_COUNT) {
             throw new StorageException("Хранилище переполнено");
         }
     }

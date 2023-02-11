@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Array based storage for Resumes
  */
-public class ListStorage extends AbstractStorage{
+public class ListStorage extends AbstractStorage {
 
     private final List<Resume> storage = new ArrayList<>();
 
@@ -31,6 +31,7 @@ public class ListStorage extends AbstractStorage{
     public int getSize() {
         return storage.size();
     }
+
     @Override
     protected void doSave(Resume r, Object resumeKey) {
         storage.add(r);
