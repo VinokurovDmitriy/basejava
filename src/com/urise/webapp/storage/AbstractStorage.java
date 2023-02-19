@@ -28,8 +28,10 @@ public abstract class AbstractStorage implements Storage {
     }
 
     @Override
-    public void update(Resume r) {
+    public void update(Resume r, String fullName) {
+        r.setFullName(fullName);
         Object searchKey = getExistingSearchKey(r.getUuid());
+        System.out.println(searchKey);
         doUpdate(r, searchKey);
     }
 

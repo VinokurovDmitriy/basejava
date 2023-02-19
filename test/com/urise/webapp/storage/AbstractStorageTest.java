@@ -2,29 +2,28 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
-import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.urise.webapp.storage.AbstractArrayStorage.MAX_COUNT;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 
 public abstract class AbstractStorageTest {
 
-    private final Storage storage;
+    protected final Storage storage;
     private static final String UUID_1 = "uuid_1";
-    private static final Resume resume_1 = new Resume(UUID_1);
+    private static final Resume resume_1 = new Resume(UUID_1, "Bill");
     private static final String UUID_2 = "uuid_2";
-    private static final Resume resume_2 = new Resume(UUID_2);
+    private static final Resume resume_2 = new Resume(UUID_2, "John");
     private static final String UUID_3 = "uuid_3";
-    private static final Resume resume_3 = new Resume(UUID_3);
+    private static final Resume resume_3 = new Resume(UUID_3, "Sara");
     private static final String UUID_4 = "uuid_4";
-    private static final Resume resume_4 = new Resume(UUID_4);
+    private static final Resume resume_4 = new Resume(UUID_4, "Jessica");
     private static final String DUMMY = "dummy";
+    protected static final String TEST_NAME = "testName";
 
 
     public AbstractStorageTest(Storage storage) {
@@ -58,10 +57,14 @@ public abstract class AbstractStorageTest {
     @Test
     public void update() {
         assertSize(3);
-        Resume updatedResume = new Resume(UUID_1);
-        storage.update(updatedResume);
+        Resume updatedResume = resume_1;
+        assertFullName(updatedResume, updatedResume.getFullName());
+        System.out.println(updatedResume);
+        storage.update(updatedResume, TEST_NAME);
         assertSize(3);
+        System.out.println(11111);
         Assert.assertSame(updatedResume, storage.get(UUID_1));
+        assertFullName(updatedResume, TEST_NAME);
     }
 
     @Test
@@ -84,6 +87,7 @@ public abstract class AbstractStorageTest {
     public void getAll() {
         assertSize(3);
         Resume[] expected = new Resume[]{resume_1, resume_2, resume_3};
+        System.out.println( expected[0]);
         assertArrayEquals(expected, storage.getAll());
 
     }
@@ -108,7 +112,7 @@ public abstract class AbstractStorageTest {
     @Test(expected = NotExistStorageException.class)
     public void updateNotExist() {
         assertSize(3);
-        storage.update(new Resume(DUMMY));
+        storage.update(new Resume(DUMMY), TEST_NAME);
     }
 
     @Test(expected = NotExistStorageException.class)
@@ -117,25 +121,14 @@ public abstract class AbstractStorageTest {
         storage.delete(DUMMY);
     }
 
-    @Test(expected = StorageException.class)
-    public void storageOverflow() {
-        clear();
-        for (int i = 0; i < MAX_COUNT; i++) {
-            try {
-                storage.save(new Resume());
-            } catch (StorageException e) {
-                Assert.fail("Ошибка сохранения резюме. Хранилище переполненно " + e);
-            }
-        }
-        assertSize(MAX_COUNT);
-        storage.save(new Resume());
-    }
-
-    private void assertSize(int size) {
+    void assertSize(int size) {
         assertEquals(size, storage.getSize());
     }
 
     private void assertGet(Resume resume) {
         assertEquals(resume, storage.get(resume.getUuid()));
+    }
+    private void assertFullName(Resume resume, String fullName) {
+        assertEquals(resume.getFullName(), fullName);
     }
 }

@@ -9,12 +9,21 @@ public class Resume implements Comparable<Resume>{
 
     // Unique identifier
     private final String uuid;
+    private String fullName;
 
-    public Resume(String uuid) {this.uuid = uuid;}
+    public Resume(String uuid, String fullName) {this.uuid = uuid;
+        this.fullName = fullName;
+    }
 
+    public Resume(String fullName) {this(UUID.randomUUID().toString(), fullName);}
     public Resume() {this(UUID.randomUUID().toString());}
 
     public String getUuid() {return uuid;}
+    public String getFullName() {
+        return this.fullName;
+    }
+
+    public void setFullName(String fullName) {this.fullName = fullName;}
 
     @Override
     public boolean equals(Object o) {

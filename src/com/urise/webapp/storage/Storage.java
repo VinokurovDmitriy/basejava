@@ -11,7 +11,7 @@ public interface Storage {
 
     void save(Resume r);
 
-    void update(Resume r);
+    void update(Resume r, String fullName);
 
     Resume get(String uuid);
 
