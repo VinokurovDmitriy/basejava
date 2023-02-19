@@ -31,7 +31,6 @@ public abstract class AbstractStorage implements Storage {
     public void update(Resume r, String fullName) {
         r.setFullName(fullName);
         Object searchKey = getExistingSearchKey(r.getUuid());
-        System.out.println(searchKey);
         doUpdate(r, searchKey);
     }
 

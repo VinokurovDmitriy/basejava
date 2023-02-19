@@ -59,7 +59,6 @@ public abstract class AbstractStorageTest {
         assertSize(3);
         Resume updatedResume = resume_1;
         assertFullName(updatedResume, updatedResume.getFullName());
-        System.out.println(updatedResume);
         storage.update(updatedResume, TEST_NAME);
         assertSize(3);
         Assert.assertSame(updatedResume, storage.get(UUID_1));
@@ -86,7 +85,6 @@ public abstract class AbstractStorageTest {
     public void getAll() {
         assertSize(3);
         Resume[] expected = new Resume[]{resume_1, resume_2, resume_3};
-        System.out.println( expected[0]);
         assertArrayEquals(expected, storage.getAll());
 
     }
