@@ -23,6 +23,16 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
+    protected List<Resume> getListStorageFromStorage() {
+        return null;
+    }
+
+    @Override
+    public List<Resume> getAllSorted() {
+        return storage;
+    }
+
+    @Override
     protected boolean isExistResume(Object resumeKey) {
         return (int) resumeKey >= 0;
     }
@@ -55,10 +65,5 @@ public class ListStorage extends AbstractStorage {
     @Override
     public void clear() {
         storage.clear();
-    }
-
-    @Override
-    public Resume[] getAll() {
-        return storage.toArray(new Resume[0]);
     }
 }

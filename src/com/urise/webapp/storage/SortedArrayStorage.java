@@ -3,6 +3,7 @@ package com.urise.webapp.storage;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Array based storage for Resumes
@@ -13,6 +14,11 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     protected Object getResumeKey(String uuid) {
         Resume searchKey = new Resume(uuid);
         return Arrays.binarySearch(storage, 0, count, searchKey);
+    }
+
+    @Override
+    public List<Resume> getListStorageFromStorage() {
+        return Arrays.asList(Arrays.copyOf(storage, count));
     }
 
     @Override

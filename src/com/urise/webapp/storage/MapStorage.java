@@ -2,8 +2,7 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Array based storage for Resumes
@@ -15,6 +14,13 @@ public class MapStorage extends AbstractStorage {
     @Override
     protected String getResumeKey(String uuid) {
         return uuid;
+    }
+
+    @Override
+    public List<Resume> getListStorageFromStorage() {
+        List<Resume> listStorage = new ArrayList<>();
+        storage.forEach((key, value) -> listStorage.add(value));
+        return listStorage;
     }
 
     @Override
@@ -50,10 +56,5 @@ public class MapStorage extends AbstractStorage {
     @Override
     public void clear() {
         storage.clear();
-    }
-
-    @Override
-    public Resume[] getAll() {
-        return storage.values().toArray(new Resume[0]);
     }
 }
