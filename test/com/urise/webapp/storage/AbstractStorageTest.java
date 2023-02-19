@@ -62,7 +62,6 @@ public abstract class AbstractStorageTest {
         System.out.println(updatedResume);
         storage.update(updatedResume, TEST_NAME);
         assertSize(3);
-        System.out.println(11111);
         Assert.assertSame(updatedResume, storage.get(UUID_1));
         assertFullName(updatedResume, TEST_NAME);
     }
