@@ -7,13 +7,13 @@ import java.util.*;
 /**
  * Array based storage for Resumes
  */
-public class MapStorage extends AbstractStorage {
+public class MapStorageUuidKey extends AbstractStorage {
 
     private final Map<Object, Resume> storage = new HashMap<>();
 
     @Override
-    protected String getResumeKey(String uuid) {
-        return uuid;
+    protected Object getResumeKey(Resume r) {
+        return r.getUuid();
     }
 
     @Override

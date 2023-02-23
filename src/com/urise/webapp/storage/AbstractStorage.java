@@ -12,7 +12,7 @@ import java.util.List;
  */
 public abstract class AbstractStorage implements Storage {
 
-    protected abstract Object getResumeKey(String uuid);
+    protected abstract Object getResumeKey(Resume r);
     protected abstract List<Resume> getListStorageFromStorage();
 
     protected abstract boolean isExistResume(Object resumeKey);
@@ -34,14 +34,14 @@ public abstract class AbstractStorage implements Storage {
     @Override
     public void update(Resume r, String fullName) {
         r.setFullName(fullName);
-        Object searchKey = getExistingSearchKey(r.getUuid());
+        Object searchKey = getExistingSearchKey(r);
         doUpdate(r, searchKey);
     }
 
 
     @Override
     public Resume get(String uuid) {
-        Object searchKey = getExistingSearchKey(uuid);
+        Object searchKey = getExistingSearchKey(new Resume(uuid));
         return doGet(searchKey);
     }
 
@@ -52,12 +52,13 @@ public abstract class AbstractStorage implements Storage {
     };
     @Override
     public void delete(String uuid) {
-        Object searchKey = getExistingSearchKey(uuid);
+        Object searchKey = getExistingSearchKey(new Resume(uuid));
         doDelete(searchKey);
     }
 
-    private Object getExistingSearchKey(String uuid) {
-        Object resumeKey = getResumeKey(uuid);
+    private Object getExistingSearchKey(Resume r) {
+        String uuid = r.getUuid();
+        Object resumeKey = getResumeKey(r);
         if (isExistResume(resumeKey)) {
             return resumeKey;
         } else {
@@ -67,7 +68,7 @@ public abstract class AbstractStorage implements Storage {
 
     private Object getNotExistingSearchKey(Resume r) {
         String uuid = r.getUuid();
-        Object resumeKey = getResumeKey(uuid);
+        Object resumeKey = getResumeKey(r);
         if (!isExistResume(resumeKey)) {
             return resumeKey;
         } else {

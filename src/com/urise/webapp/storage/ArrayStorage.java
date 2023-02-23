@@ -12,9 +12,9 @@ import java.util.List;
 public class ArrayStorage extends AbstractArrayStorage {
 
     @Override
-    protected Integer getResumeKey(String uuid) {
+    protected Integer getResumeKey(Resume r) {
         for (int i = 0; i < count; i++) {
-            if (storage[i] != null && storage[i].getUuid().equals(uuid)) {
+            if (storage[i] != null && storage[i].getUuid().equals(r.getUuid())) {
                 return i;
             }
         }
