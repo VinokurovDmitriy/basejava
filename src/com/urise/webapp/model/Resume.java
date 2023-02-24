@@ -37,7 +37,7 @@ public class Resume implements Comparable<Resume>{
     public int hashCode() {return uuid.hashCode();}
 
     @Override
-    public String toString() {return uuid;}
+    public String toString() {return "uuid: " + uuid + ", full name: " + fullName;}
 
     @Override
     public int compareTo(Resume o) {return uuid.compareTo(o.getUuid());}
