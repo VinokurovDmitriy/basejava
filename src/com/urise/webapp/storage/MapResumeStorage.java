@@ -23,36 +23,36 @@ public class MapResumeStorage extends AbstractStorage {
 
     @Override
     protected boolean isExistResume(Object resumeKey) {
-        return false;
+        return storage.get(resumeKey) == null;
     }
 
     @Override
     protected void doSave(Resume r, Object resumeKey) {
-
+        storage.put(resumeKey, r);
     }
 
     @Override
     protected void doUpdate(Resume r, Object resumeKey) {
-
+        storage.put(resumeKey, r);
     }
 
     @Override
     protected Resume doGet(Object resumeKey) {
-        return null;
+        return (Resume) resumeKey;
     }
 
     @Override
     protected void doDelete(Object resumeKey) {
-
+        storage.remove(resumeKey);
     }
 
     @Override
     public void clear() {
-
+        storage.clear();
     }
 
     @Override
     public int getSize() {
-        return 0;
+        return storage.size();
     }
 }
