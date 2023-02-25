@@ -2,6 +2,7 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,9 +23,10 @@ public class ArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    public List<Resume> getListStorageFromStorage() {
+    public ArrayList doGetAll() {
         Resume[] allResume = Arrays.copyOf(storage, count);
-        return Arrays.asList(allResume);
+        return new ArrayList<>(List.of(allResume));
+//        return Arrays.asList(allResume);
     }
 
     @Override

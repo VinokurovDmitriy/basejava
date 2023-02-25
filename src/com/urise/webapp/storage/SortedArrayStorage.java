@@ -2,6 +2,7 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,9 +17,8 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    public List<Resume> getListStorageFromStorage() {
-        System.out.println(Arrays.copyOf(storage, count));
-        return Arrays.asList(Arrays.copyOf(storage, count));
+    public ArrayList<Resume> doGetAll() {
+        return new ArrayList<>(List.of(Arrays.copyOf(storage, count)));
     }
 
     @Override
