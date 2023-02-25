@@ -12,8 +12,8 @@ public class MapResumeStorage extends AbstractStorage {
     private final Map<Object, Resume> storage = new HashMap<>();
 
     @Override
-    protected Resume getResumeKey(Resume r) {
-      return r;
+    protected Object getSearchKey(String uuid) {
+        return storage.get(uuid);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class MapResumeStorage extends AbstractStorage {
 
     @Override
     protected boolean isExistResume(Object resumeKey) {
-        return storage.get(resumeKey) == null;
+        return storage.get(resumeKey) != null;
     }
 
     @Override
@@ -38,6 +38,7 @@ public class MapResumeStorage extends AbstractStorage {
 
     @Override
     protected Resume doGet(Object resumeKey) {
+        System.out.println(resumeKey);
         return (Resume) resumeKey;
     }
 

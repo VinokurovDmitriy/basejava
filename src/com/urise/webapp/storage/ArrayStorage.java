@@ -13,9 +13,9 @@ import java.util.List;
 public class ArrayStorage extends AbstractArrayStorage {
 
     @Override
-    protected Integer getResumeKey(Resume r) {
+    protected Integer getSearchKey(String uuid) {
         for (int i = 0; i < count; i++) {
-            if (storage[i] != null && storage[i].getUuid().equals(r.getUuid())) {
+            if (storage[i] != null && storage[i].getUuid().equals(uuid)) {
                 return i;
             }
         }
@@ -23,10 +23,8 @@ public class ArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    public ArrayList doGetAll() {
-        Resume[] allResume = Arrays.copyOf(storage, count);
-        return new ArrayList<>(List.of(allResume));
-//        return Arrays.asList(allResume);
+    public ArrayList<Resume> doGetAll() {
+        return new ArrayList<>(List.of(Arrays.copyOf(storage, count)));
     }
 
     @Override

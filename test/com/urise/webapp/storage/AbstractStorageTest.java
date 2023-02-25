@@ -60,12 +60,14 @@ public abstract class AbstractStorageTest {
     @Test
     public void update() {
         assertSize(3);
-        Resume updatedResume = resume_1;
-        assertFullName(updatedResume, updatedResume.getFullName());
-        storage.update(updatedResume, TEST_NAME);
+        assertFullName(resume_1, resume_1.getFullName());
+        storage.update(resume_1, TEST_NAME);
         assertSize(3);
-        Assert.assertSame(updatedResume, storage.get(UUID_1));
-        assertFullName(updatedResume, TEST_NAME);
+//        System.out.println(resume_1);
+//        System.out.println(storage.getAllSorted().get(0));
+//        System.out.println(storage.get(resume_1));
+        Assert.assertSame(resume_1, storage.get(UUID_1));
+        assertFullName(resume_1, TEST_NAME);
     }
 
     @Test

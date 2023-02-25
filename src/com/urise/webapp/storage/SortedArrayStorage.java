@@ -4,16 +4,18 @@ import com.urise.webapp.model.Resume;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 /**
  * Array based storage for Resumes
  */
 public class SortedArrayStorage extends AbstractArrayStorage {
+    private static final Comparator<Resume> RESUME_COMPARATOR = (o1, o2) -> o1.getUuid().compareTo(o2.getUuid());
 
     @Override
-    protected Object getResumeKey(Resume r) {
-        return Arrays.binarySearch(storage, 0, count, r);
+    protected Object getSearchKey(String uuid) {
+        return Arrays.binarySearch(storage, 0, count, new Resume("dummy"), RESUME_COMPARATOR);
     }
 
     @Override

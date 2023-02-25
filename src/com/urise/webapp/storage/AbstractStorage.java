@@ -13,7 +13,7 @@ import java.util.List;
  */
 public abstract class AbstractStorage implements Storage {
 
-    protected abstract Object getResumeKey(Resume r);
+    protected abstract Object getSearchKey(String uuid);
     protected abstract ArrayList<Resume> doGetAll();
 
     protected abstract boolean isExistResume(Object resumeKey);
@@ -28,21 +28,21 @@ public abstract class AbstractStorage implements Storage {
 
     @Override
     public void save(Resume r) {
-        Object searchKey = getNotExistingSearchKey(getResumeKey(r), r.getUuid());
+        Object searchKey = getNotExistingSearchKey(getSearchKey(r.getUuid()), r.getUuid());
         doSave(r, searchKey);
     }
 
     @Override
     public void update(Resume r, String fullName) {
         r.setFullName(fullName);
-        Object searchKey = getExistingSearchKey(getResumeKey(r), r.getUuid());
+        Object searchKey = getExistingSearchKey(r.getUuid());
         doUpdate(r, searchKey);
     }
 
 
     @Override
     public Resume get(String uuid) {
-        Object searchKey = getExistingSearchKey(getResumeKey(new Resume(uuid)), uuid);
+        Object searchKey = getExistingSearchKey(uuid);
         return doGet(searchKey);
     }
 
@@ -53,23 +53,21 @@ public abstract class AbstractStorage implements Storage {
     };
     @Override
     public void delete(String uuid) {
-        Object searchKey = getExistingSearchKey(getResumeKey(new Resume(uuid)), uuid);
+        Object searchKey = getExistingSearchKey(uuid);
         doDelete(searchKey);
     }
 
-    private Object getExistingSearchKey(Object resumeKey, String uuid) {
-        if (isExistResume(resumeKey)) {
-            return resumeKey;
-        } else {
-            throw new NotExistStorageException(uuid);
+    private Object getExistingSearchKey(String uuid) {
+        if (isExistResume(uuid)) {
+            return getSearchKey(uuid);
         }
+        throw new NotExistStorageException(uuid);
     }
 
     private Object getNotExistingSearchKey(Object resumeKey, String uuid) {
         if (!isExistResume(resumeKey)) {
             return resumeKey;
-        } else {
-            throw new ExistStorageException(uuid);
         }
+        throw new ExistStorageException(uuid);
     }
 }
