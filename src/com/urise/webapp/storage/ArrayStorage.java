@@ -2,11 +2,6 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-
 /**
  * Array based storage for Resumes
  */
@@ -20,11 +15,6 @@ public class ArrayStorage extends AbstractArrayStorage {
             }
         }
         return -1;
-    }
-
-    @Override
-    public ArrayList<Resume> doGetAll() {
-        return new ArrayList<>(List.of(Arrays.copyOf(storage, count)));
     }
 
     @Override

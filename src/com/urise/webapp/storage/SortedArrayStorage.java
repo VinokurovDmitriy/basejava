@@ -2,10 +2,8 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 
 /**
  * Array based storage for Resumes
@@ -17,11 +15,6 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     protected Object getSearchKey(String uuid) {
         Resume r = new Resume("dummy");
         return Arrays.binarySearch(storage, 0, count, r, RESUME_COMPARATOR);
-    }
-
-    @Override
-    public ArrayList<Resume> doGetAll() {
-        return new ArrayList<>(List.of(Arrays.copyOf(storage, count)));
     }
 
     @Override

@@ -17,34 +17,34 @@ public class MapResumeStorage extends AbstractStorage {
     }
 
     @Override
-    protected ArrayList<Resume> doGetAll() {
+    protected ArrayList<Resume> doCopyAll() {
         return new ArrayList<>(storage.values());
     }
 
     @Override
-    protected boolean isExistResume(Object resumeKey) {
-        return storage.get(resumeKey) != null;
+    protected boolean isExistResume(Object searchKey) {
+        return storage.get(searchKey) != null;
     }
 
     @Override
-    protected void doSave(Resume r, Object resumeKey) {
-        storage.put(resumeKey, r);
+    protected void doSave(Resume r, Object searchKey) {
+        storage.put(searchKey, r);
     }
 
     @Override
-    protected void doUpdate(Resume r, Object resumeKey) {
-        storage.put(resumeKey, r);
+    protected void doUpdate(Resume r, Object searchKey) {
+        storage.put(searchKey, r);
     }
 
     @Override
-    protected Resume doGet(Object resumeKey) {
-        System.out.println(resumeKey);
-        return (Resume) resumeKey;
+    protected Resume doGet(Object searchKey) {
+        System.out.println(searchKey);
+        return (Resume) searchKey;
     }
 
     @Override
-    protected void doDelete(Object resumeKey) {
-        storage.remove(resumeKey);
+    protected void doDelete(Object searchKey) {
+        storage.remove(searchKey);
     }
 
     @Override

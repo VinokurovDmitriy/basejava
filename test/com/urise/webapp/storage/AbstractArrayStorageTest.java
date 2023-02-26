@@ -24,6 +24,6 @@ public abstract class AbstractArrayStorageTest extends AbstractStorageTest{
             }
         }
         assertSize(MAX_COUNT);
-        storage.save(new Resume());
+        storage.save(new Resume("dummy"));
     }
 }
