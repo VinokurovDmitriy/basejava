@@ -23,7 +23,7 @@ public class MapResumeStorage extends AbstractStorage {
 
     @Override
     protected boolean isExistResume(Object searchKey) {
-        return storage.get(searchKey) != null;
+        return searchKey != null;
     }
 
     @Override
