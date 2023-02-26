@@ -15,7 +15,8 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
     protected Object getSearchKey(String uuid) {
-        return Arrays.binarySearch(storage, 0, count, new Resume("dummy"), RESUME_COMPARATOR);
+        Resume r = new Resume("dummy");
+        return Arrays.binarySearch(storage, 0, count, r, RESUME_COMPARATOR);
     }
 
     @Override
@@ -25,7 +26,10 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
     protected void doSave(Resume r, Object resumeKey) {
+        System.out.println(r);
+        System.out.println(resumeKey);
         checkOverflow();
+        System.out.println();
         int destinationIndex = -((int) resumeKey + 1);
         if (destinationIndex != count) {
             System.arraycopy(storage, destinationIndex, storage, destinationIndex + 1, count - destinationIndex);
