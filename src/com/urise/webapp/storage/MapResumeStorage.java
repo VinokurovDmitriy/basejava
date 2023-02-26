@@ -13,6 +13,7 @@ public class MapResumeStorage extends AbstractStorage {
 
     @Override
     protected Object getSearchKey(String uuid) {
+        System.out.println( storage.get(uuid));
         return storage.get(uuid);
     }
 

@@ -3,26 +3,20 @@ package com.urise.webapp.storage;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 /**
  * Array based storage for Resumes
  */
 public class SortedArrayStorage extends AbstractArrayStorage {
-    private static final Comparator<Resume> RESUME_COMPARATOR = (o1, o2) -> o1.getUuid().compareTo(o2.getUuid());
 
     @Override
     protected Object getSearchKey(String uuid) {
-        Resume r = new Resume("dummy");
-        return Arrays.binarySearch(storage, 0, count, r, RESUME_COMPARATOR);
+        return Arrays.binarySearch(storage, 0, count, new Resume(uuid));
     }
 
     @Override
     protected void doSave(Resume r, Object resumeKey) {
-        System.out.println(r);
-        System.out.println(resumeKey);
         checkOverflow();
-        System.out.println();
         int destinationIndex = -((int) resumeKey + 1);
         if (destinationIndex != count) {
             System.arraycopy(storage, destinationIndex, storage, destinationIndex + 1, count - destinationIndex);
