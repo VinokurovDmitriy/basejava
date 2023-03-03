@@ -13,7 +13,6 @@ public class MapResumeStorage extends AbstractStorage {
 
     @Override
     protected Object getSearchKey(String uuid) {
-        System.out.println( storage.get(uuid));
         return storage.get(uuid);
     }
 
@@ -29,23 +28,22 @@ public class MapResumeStorage extends AbstractStorage {
 
     @Override
     protected void doSave(Resume r, Object searchKey) {
-        storage.put(searchKey, r);
+        storage.put(r.getUuid(), r);
     }
 
     @Override
     protected void doUpdate(Resume r, Object searchKey) {
-        storage.put(searchKey, r);
+        storage.put(r.getUuid(), r);
     }
 
     @Override
     protected Resume doGet(Object searchKey) {
-        System.out.println(searchKey);
         return (Resume) searchKey;
     }
 
     @Override
     protected void doDelete(Object searchKey) {
-        storage.remove(searchKey);
+        storage.remove(doGet(searchKey).getUuid());
     }
 
     @Override

@@ -41,9 +41,7 @@ public abstract class AbstractStorage implements Storage {
 
     @Override
     public Resume get(String uuid) {
-        System.out.println(uuid);
         Object searchKey = getExistingSearchKey(uuid);
-        System.out.println(searchKey);
         return doGet(searchKey);
     }
 
@@ -61,7 +59,6 @@ public abstract class AbstractStorage implements Storage {
 
     private Object getExistingSearchKey(String uuid) {
         Object searchKey = getSearchKey(uuid);
-        System.out.println(searchKey);
         if (isExistResume(searchKey)) {
             return searchKey;
         }

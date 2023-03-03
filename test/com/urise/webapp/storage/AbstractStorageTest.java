@@ -39,9 +39,6 @@ public abstract class AbstractStorageTest {
         storage.save(resume_1);
         storage.save(resume_2);
         storage.save(resume_3);
-        for(Resume r : storage.getAllSorted()) {
-            System.out.println(r);
-        }
     }
 
     @Test
@@ -72,8 +69,8 @@ public abstract class AbstractStorageTest {
     public void get() {
         assertSize(3);
         assertGet(resume_1);
-//        assertGet(resume_2);
-//        assertGet(resume_3);
+        assertGet(resume_2);
+        assertGet(resume_3);
     }
 
     @Test(expected = NotExistStorageException.class)
