@@ -18,13 +18,13 @@ public abstract class AbstractStorageTest {
 
     protected final Storage storage;
     private static final String UUID_1 = "uuid_1";
-    private static final Resume resume_1 = new Resume(UUID_1, "Bill");
+    private static final Resume resume_1 = new Resume(UUID_1, "Bill", personal);
     private static final String UUID_2 = "uuid_2";
-    private static final Resume resume_2 = new Resume(UUID_2, "John");
+    private static final Resume resume_2 = new Resume(UUID_2, "John", personal);
     private static final String UUID_3 = "uuid_3";
-    private static final Resume resume_3 = new Resume(UUID_3, "Sara");
+    private static final Resume resume_3 = new Resume(UUID_3, "Sara", personal);
     private static final String UUID_4 = "uuid_4";
-    private static final Resume resume_4 = new Resume(UUID_4, "Jessica");
+    private static final Resume resume_4 = new Resume(UUID_4, "Jessica", personal);
     private static final String DUMMY = "dummy";
     protected static final String TEST_NAME = "testName";
 
@@ -62,7 +62,7 @@ public abstract class AbstractStorageTest {
         assertSize(3);
         storage.update(resume_1, TEST_NAME);
         assertSize(3);
-        assertGet(new Resume(resume_1.getUuid(), TEST_NAME));
+        assertGet(new Resume(resume_1.getUuid(), TEST_NAME, personal));
     }
 
     @Test
@@ -108,7 +108,7 @@ public abstract class AbstractStorageTest {
     @Test(expected = NotExistStorageException.class)
     public void updateNotExist() {
         assertSize(3);
-        storage.update(new Resume(DUMMY), TEST_NAME);
+        storage.update(new Resume(DUMMY, objective, achievment), TEST_NAME);
     }
 
     @Test(expected = NotExistStorageException.class)

@@ -8,26 +8,47 @@ import java.util.UUID;
  */
 public class Resume implements Comparable<Resume>{
 
-    // Unique identifier
     private final String uuid;
     private final String fullName;
+    private final ContactsBlock contacts;
+    private final TextBlock personal;
+    private final TextBlock objective;
+    private final Object achievement;
+    private final Object qualifications;
+    private final Object experience;
+    private final Object education;
 
-    public Resume(String uuid, String fullName) {
-        Objects.requireNonNull(uuid, "uuid mast not be null");
-        Objects.requireNonNull(fullName, "full name mast not be null");
-        this.uuid = uuid;
+    public Resume(String fullName, ContactsBlock contacts, TextBlock personal, TextBlock objective, Object achievement,
+                  Object qualifications, Object experience, Object education) {
+        this.personal = personal;
+        this.contacts = contacts;
         this.fullName = fullName;
-    }
-
-    public Resume(String fullName) {
-        this(UUID.randomUUID().toString(), fullName);
+        this.objective = objective;
+        this.achievement = achievement;
+        this.qualifications = qualifications;
+        this.experience = experience;
+        this.education = education;
+        this.uuid = UUID.randomUUID().toString();
     }
 
     public String getUuid() {return uuid;}
     public String getFullName() {
         return this.fullName;
     }
+    public TextBlock getPersonal() {return this.personal;}
+    public TextBlock getObjective() {return this.objective;}
+    public Object getAchievement() {return this.achievement;}
+    public Object getQualifications() {return this.qualifications;}
+    public Object getExperience() {return this.experience;}
+    public Object getEducation() {return this.education;}
 
+    private StringBuilder printContacts() {
+        StringBuilder result = new StringBuilder();
+        for(String contact : contacts.getContacts()) {
+           result.append(contact).append("\n");
+        }
+        return result;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,7 +63,9 @@ public class Resume implements Comparable<Resume>{
     }
 
     @Override
-    public String toString() {return "uuid: " + uuid + ", full name: " + fullName;}
+    public String toString() {
+        return uuid + '(' + fullName + ')' + "\n" + printContacts() + personal.printBlock() + objective.printBlock();
+    }
 
     @Override
     public int compareTo(Resume o) {

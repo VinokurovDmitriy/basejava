@@ -18,12 +18,12 @@ public abstract class AbstractArrayStorageTest extends AbstractStorageTest{
         storage.clear();
         for (int i = 0; i < MAX_COUNT; i++) {
             try {
-                storage.save(new Resume(TEST_NAME + i));
+                storage.save(new Resume(TEST_NAME + i, objective, achievment));
             } catch (StorageException e) {
                 Assert.fail("Ошибка сохранения резюме. Хранилище переполненно " + e);
             }
         }
         assertSize(MAX_COUNT);
-        storage.save(new Resume("dummy"));
+        storage.save(new Resume("dummy", objective, achievment));
     }
 }
