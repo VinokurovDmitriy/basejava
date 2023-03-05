@@ -64,72 +64,82 @@ public class ResumeTestData {
     );
 
     private static final ListBlock achievement = new ListBlock(SectionType.ACHIEVEMENT, achievementsData);
-    private static final ListBlock qualifications = new ListBlock(SectionType.QUALIFICATIONS, qualificationsData);
+    private static final ListBlock qualifications = new ListBlock(SectionType.valueOf("QUALIFICATIONS"), qualificationsData);
 
     public static void main(String[] args) {
         Resume r = new Resume("Григорий Кислин", contacts, personal, objective, achievement, qualifications,
                 getExperience(), getEducation());
-        System.out.println(r.toString());
+        System.out.println(r);
 
     }
 
 
-    private static Map<String, Object> getExperience() {
-        final Map<String, Object> experience = new HashMap<>();
-        experience.put("Java Online Projects", new ExtraInfoBlock("10/2013", "Автор проекта.",
-                "javaops.ru", "Создание, организация и проведение Java онлайн проектов и стажировок."));
-        experience.put("Wrike", new ExtraInfoBlock("10/2014", "01/2016", "Старший разработчик (backend)",
-                "www.wrike.com", "Проектирование и разработка онлайн платформы управления проектами Wrike" +
-                " (Java 8 API, Maven, Spring, MyBatis, Guava, Vaadin, PostgreSQL, Redis). Двухфакторная аутентификация," +
-                " авторизация по OAuth1, OAuth2, JWT SSO."));
-        experience.put("RIT Center", new ExtraInfoBlock("04/2012", "10/2014", "Java архитектор", null,
-                "Организация процесса разработки системы ERP для разных окружений: релизная политика, версионирование," +
-                        " ведение CI (Jenkins), миграция базы (кастомизация Flyway), конфигурирование системы (pgBoucer, Nginx)," +
-                        " AAA via SSO. Архитектура БД и серверной части системы. Разработка интергационных сервисов: CMIS," +
-                        " BPMN2, 1C (WebServices), сервисов общего назначения (почта, экспорт в pdf, doc, html). " +
-                        "Интеграция Alfresco JLAN для online редактирование из браузера документов MS Office. Maven + " +
-                        "plugin development, Ant, Apache Commons, Spring security, Spring MVC, Tomcat,WSO2, xcmis, " +
-                        "OpenCmis, Bonita, Python scripting, Unix shell remote scripting via ssh tunnels, PL/Python"));
-        experience.put("Luxoft (Deutsche Bank)", new ExtraInfoBlock("12/2010", "04/2012",
-                "Ведущий программист", "luxoft.ru", "Участие в проекте Deutsche Bank CRM (WebLogic, Hibernate," +
-                " Spring, Spring MVC, SmartGWT, GWT, Jasper, Oracle). Реализация клиентской и серверной части CRM. Реализация " +
-                "RIA-приложения для администрирования, мониторинга и анализа результатов в области алгоритмического " +
-                "трейдинга. JPA, Spring, Spring-MVC, GWT, ExtGWT (GXT), Highstock, Commet, HTML5."));
-        experience.put("Yota", new ExtraInfoBlock("03/2007", "06/2008", "Ведущий специалист", "yota.ru",
+    private static Map<Link, ExtraInfoBlock> getExperience() {
+        final Map<Link, ExtraInfoBlock> experience = new HashMap<>();
+        experience.put(new Link("javaops.ru", "Java Online Projects"),
+                new ExtraInfoBlock("10/2013", "Автор проекта.",
+                        "Создание, организация и проведение Java онлайн проектов и стажировок."));
+        experience.put(new Link("www.wrike.com", "Wrike"), new ExtraInfoBlock("10/2014", "01/2016",
+                "Старший разработчик (backend)", "Проектирование и разработка онлайн платформы управления проектами Wrike" +
+                        " (Java 8 API, Maven, Spring, MyBatis, Guava, Vaadin, PostgreSQL, Redis). Двухфакторная аутентификация," +
+                        " авторизация по OAuth1, OAuth2, JWT SSO."));
+        experience.put(new Link(null, "RIT Center"), new ExtraInfoBlock("04/2012", "10/2014",
+                "Java архитектор", "Организация процесса разработки системы ERP для разных окружений: релизная" +
+                " политика, версионирование, ведение CI (Jenkins), миграция базы (кастомизация Flyway), конфигурирование " +
+                "системы (pgBoucer, Nginx), AAA via SSO. Архитектура БД и серверной части системы. Разработка интергационных" +
+                " сервисов: CMIS, BPMN2, 1C (WebServices), сервисов общего назначения (почта, экспорт в pdf, doc, html). " +
+                "Интеграция Alfresco JLAN для online редактирование из браузера документов MS Office. Maven + " +
+                "plugin development, Ant, Apache Commons, Spring security, Spring MVC, Tomcat,WSO2, xcmis, " +
+                "OpenCmis, Bonita, Python scripting, Unix shell remote scripting via ssh tunnels, PL/Python"));
+        experience.put(new Link("luxoft.ru", "Luxoft (Deutsche Bank)"),
+                new ExtraInfoBlock("12/2010", "04/2012", "Ведущий программист",
+                        "Участие в проекте Deutsche Bank CRM (WebLogic, Hibernate," +
+                                " Spring, Spring MVC, SmartGWT, GWT, Jasper, Oracle). Реализация клиентской и серверной " +
+                                "части CRM. Реализация RIA-приложения для администрирования, мониторинга и анализа " +
+                                "результатов в области алгоритмического трейдинга. JPA, Spring, Spring-MVC, GWT, " +
+                                "ExtGWT (GXT), Highstock, Commet, HTML5."));
+        experience.put(new Link("yota.ru", "Yota"),
+                new ExtraInfoBlock("03/2007", "06/2008", "Ведущий специалист",
                 "Реализация клиентской (Eclipse RCP) и серверной (JBoss 4.2, Hibernate 3.0, Tomcat, JMS) частей " +
                         "кластерного J2EE приложения (OLAP, Data mining).)"));
-        experience.put("Enkata", new ExtraInfoBlock("10/2014", "01/2016", "Разработчик ПО", "enkata.com",
-                "Проектирование и разработка онлайн платформы управления проектами Wrike (Java 8 API, Maven, Spring, " +
-                        "MyBatis, Guava, Vaadin, PostgreSQL, Redis). Двухфакторная аутентификация, авторизация по OAuth1," +
-                        " OAuth2, JWT SSO."));
-        experience.put("Siemens AG", new ExtraInfoBlock("01/2005", "02/2007", "Разработчик ПО",
-                "siemens.com/ru/ru/home.html", "Разработка информационной модели, проектирование интерфейсов," +
+        experience.put(new Link("enkata.com", "Enkata"), new ExtraInfoBlock("10/2014", "01/2016",
+                "Разработчик ПО", "Проектирование и разработка онлайн платформы управления проектами Wrike " +
+                "(Java 8 API, Maven, Spring, MyBatis, Guava, Vaadin, PostgreSQL, Redis). Двухфакторная аутентификация, " +
+                "авторизация по OAuth1, OAuth2, JWT SSO."));
+        experience.put(new Link("siemens.com/ru/ru/home.html", "Siemens AG"),
+                new ExtraInfoBlock("01/2005", "02/2007", "Разработчик ПО",
+                "Разработка информационной модели, проектирование интерфейсов," +
                 " реализация и отладка ПО на мобильной IN платформе Siemens @vantage (Java, Unix)."));
-        experience.put("Alcatel", new ExtraInfoBlock("09/1997", "01/2005",
-                "Инженер по аппаратному и программному тестированию", "alcatel.ru",
+        experience.put(new Link("alcatel.ru", "Alcatel"), new ExtraInfoBlock("09/1997", "01/2005",
+                "Инженер по аппаратному и программному тестированию",
                 "Тестирование, отладка, внедрение ПО цифровой телефонной станции Alcatel 1000 S12 (CHILL, ASM)."));
         return experience;
     }
 
-    private static Map<String, Object> getEducation() {
-        final Map<String, Object> education = new HashMap<>();
-        education.put("Coursera", new BaseInfoBlock("03/2013", "05/2013",
-                "coursera.org/course/progfun", "'Functional Programming Principles in Scala' by Martin Odersky"));
-        education.put("Luxoft", new BaseInfoBlock("03/2011", "04/2011",
-                "luxoft-training.ru/training/catalog/course.html?ID=22366",
-                "Курс 'Объектно-ориентированный анализ ИС. Концептуальное моделирование на UML."));
-        education.put("Siemens AG", new BaseInfoBlock("01/2005", "04/2005", "siemens.ru",
-                "3 месяца обучения мобильным IN сетям (Берлин)"));
-        education.put("Alcatel", new BaseInfoBlock("09/1997", "03/1998", "alcatel.ru",
-                "6 месяцев обучения цифровым телефонным сетям (Москва)"));
-        education.put("Санкт-Петербургский национальный исследовательский университет информационных технологий, механики и оптики",
+    private static Map<Link, BaseInfoBlock[]> getEducation() {
+        final Map<Link, BaseInfoBlock[]> education = new HashMap<>();
+        education.put(new Link("coursera.org/course/progfun", "Coursera"),
+                new BaseInfoBlock[]{new BaseInfoBlock("03/2013", "05/2013",
+                        "'Functional Programming Principles in Scala' by Martin Odersky")});
+        education.put(new Link("luxoft-training.ru/training/catalog/course.html?ID=22366", "Luxoft"),
+                new BaseInfoBlock[]{new BaseInfoBlock("03/2011", "04/2011",
+                "Курс 'Объектно-ориентированный анализ ИС. Концептуальное моделирование на UML.")});
+        education.put(new Link("siemens.ru", "Siemens AG"),
+                new BaseInfoBlock[]{new BaseInfoBlock("01/2005", "04/2005",
+                "3 месяца обучения мобильным IN сетям (Берлин)")});
+        education.put(new Link("alcatel.ru", "Alcatel"), new BaseInfoBlock[]{
+                new BaseInfoBlock("09/1997", "03/1998",
+                        "6 месяцев обучения цифровым телефонным сетям (Москва)")
+        });
+        education.put(new Link("ifmo.ru", "Санкт-Петербургский национальный исследовательский " +
+                "университет информационных технологий, механики и оптики"),
                 new BaseInfoBlock[]{
-                        new BaseInfoBlock("09/1993", "07/1996", "ifmo.ru", "Аспирантура (программист С, С++)"),
-                        new BaseInfoBlock("09/1987", "07/1993", "ifmo.ru", "Инженер (программист Fortran, C)")
+                        new BaseInfoBlock("09/1993", "07/1996", "Аспирантура (программист С, С++)"),
+                        new BaseInfoBlock("09/1987", "07/1993", "Инженер (программист Fortran, C)")
                 }
         );
-        education.put("Заочная физико-техническая школа при МФТИ", new BaseInfoBlock("09/1984", "06/1987",
-                "mipt.ru", "Закончил с отличием"));
+        education.put(new Link("mipt.ru", "Заочная физико-техническая школа при МФТИ"), new BaseInfoBlock[]{
+                new BaseInfoBlock("09/1984", "06/1987","Закончил с отличием")});
         return education;
     }
 }

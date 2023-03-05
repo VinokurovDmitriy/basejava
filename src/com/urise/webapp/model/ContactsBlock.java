@@ -10,9 +10,9 @@ public class ContactsBlock {
     private final String homePage;
 
     public ContactsBlock(String phone, Link skype, Link email, Link linkedIn, Link gitHub, Link stackoverflow, Link homePage) {
-        this.phone = ContactsType.PHONE + phone;
-        this.skype = ContactsType.SKYPE + skype.getText();
-        this.email = ContactsType.EMAIL + email.getText();
+        this.phone = ContactsType.PHONE.getLabel() + phone;
+        this.skype = ContactsType.SKYPE.getLabel() + skype.getText();
+        this.email = ContactsType.EMAIL.getLabel() + email.getText();
         this.linkedIn = linkedIn.getText();
         this.gitHub = gitHub.getText();
         this.stackoverflow = stackoverflow.getText();

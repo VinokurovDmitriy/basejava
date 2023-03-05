@@ -5,15 +5,21 @@ public class BaseInfoBlock {
     private final String header;
     private final String dateFrom;
     private final String dateTo;
-    private final String link;
 
-    public BaseInfoBlock(String dateFrom, String dateTo, String link, String header) {
+    public BaseInfoBlock(String dateFrom, String dateTo, String header) {
         this.header = header;
-        this.link = header;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
     }
-    BaseInfoBlock(String dateFrom, String link, String header) {
-        this(dateFrom, "Сейчас", link, header);
+    BaseInfoBlock(String dateFrom, String header) {
+        this(dateFrom, "Сейчас", header);
     }
+
+    public String getDatesFrom() {
+        return dateFrom + " - " + dateTo;
+    }
+    public String getHeader() {
+        return header;
+    }
+
 }

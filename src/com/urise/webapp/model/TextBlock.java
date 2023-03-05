@@ -7,7 +7,7 @@ public class TextBlock {
         this.header = header;
         this.text = text;
     }
-    public String printBlock() {
-        return "\n" + this.header + "\n" + this.text + header + "\n";
+    public String toString() {
+        return "\n" + this.header.getSectionName() + "\n" + this.text + header + "\n";
     }
 }

@@ -1,5 +1,6 @@
 package com.urise.webapp.model;
 
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -15,11 +16,11 @@ public class Resume implements Comparable<Resume>{
     private final TextBlock objective;
     private final Object achievement;
     private final Object qualifications;
-    private final Object experience;
-    private final Object education;
+    private final Map<Link, ExtraInfoBlock> experience;
+    private final Map<Link, BaseInfoBlock[]> education;
 
     public Resume(String fullName, ContactsBlock contacts, TextBlock personal, TextBlock objective, Object achievement,
-                  Object qualifications, Object experience, Object education) {
+                  Object qualifications, Map<Link, ExtraInfoBlock> experience, Map<Link, BaseInfoBlock[]> education) {
         this.personal = personal;
         this.contacts = contacts;
         this.fullName = fullName;
@@ -42,7 +43,7 @@ public class Resume implements Comparable<Resume>{
     public Object getExperience() {return this.experience;}
     public Object getEducation() {return this.education;}
 
-    private StringBuilder printContacts() {
+    public StringBuilder getContacts() {
         StringBuilder result = new StringBuilder();
         for(String contact : contacts.getContacts()) {
            result.append(contact).append("\n");
@@ -64,7 +65,12 @@ public class Resume implements Comparable<Resume>{
 
     @Override
     public String toString() {
-        return uuid + '(' + fullName + ')' + "\n" + printContacts() + personal.printBlock() + objective.printBlock();
+        return
+//                uuid + '(' +
+                fullName
+//                        + ')'
+                        + "\n" + getContacts() + personal.toString() + objective.toString() + achievement.toString() +
+                qualifications.toString() + new ExperienceSection(experience) + new EducationSection(education);
     }
 
     @Override

@@ -8,10 +8,11 @@ public class ListBlock {
         this.textList = textList;
     }
 
-    public Enum<SectionType> getHeader() {
-        return this.header;
-    }
-    public String [] getTextList() {
-        return this.textList;
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        for(String item : textList) {
+            result.append('*').append(item).append("\n");
+        }
+        return "\n" + header.getSectionName() + "\n" + result;
     }
 }
