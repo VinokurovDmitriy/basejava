@@ -43,13 +43,6 @@ public class Resume implements Comparable<Resume>{
     public Object getExperience() {return this.experience;}
     public Object getEducation() {return this.education;}
 
-    public StringBuilder getContacts() {
-        StringBuilder result = new StringBuilder();
-        for(String contact : contacts.getContacts()) {
-           result.append(contact).append("\n");
-        }
-        return result;
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -69,8 +62,8 @@ public class Resume implements Comparable<Resume>{
 //                uuid + '(' +
                 fullName
 //                        + ')'
-                        + "\n" + getContacts() + personal.toString() + objective.toString() + achievement.toString() +
-                qualifications.toString() + new ExperienceSection(experience) + new EducationSection(education);
+                        + "\n" + contacts + personal + objective + achievement +
+                qualifications + experience + education;
     }
 
     @Override

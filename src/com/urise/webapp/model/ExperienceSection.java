@@ -15,7 +15,7 @@ public class ExperienceSection {
         StringBuilder result = new StringBuilder();
         for (var entry : data.entrySet()) {
             var values = entry.getValue();
-            result.append(" ".repeat(10)).append(entry.getKey().getText()).append("\n");
+            result.append(" ".repeat(10)).append(entry.getKey().getLabel()).append("\n");
             result.append(values.getDatesFrom()).append(" ".repeat(10)).append(values.getHeader()).append("\n\n");
             result.append(values.getText()).append("\n\n");
         }

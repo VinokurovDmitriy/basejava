@@ -13,8 +13,8 @@ public class EducationSection {
     public String toString() {
         StringBuilder result = new StringBuilder();
         for (var entry : data.entrySet()) {
-            var values = entry.getValue();
-            result.append(" ".repeat(10)).append(entry.getKey().getText()).append("\n");
+            BaseInfoBlock[] values = entry.getValue();
+            result.append(" ".repeat(10)).append(entry.getKey().getLabel()).append("\n");
             for(var value : values) {
                 result.append(value.getDatesFrom()).append(" ".repeat(10)).append(value.getHeader()).append("\n\n");
             }
