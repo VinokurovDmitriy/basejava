@@ -19,7 +19,7 @@ public class ArrayStorage extends AbstractArrayStorage {
 
     @Override
     protected void doSave(Resume r, Object resumeKey) {
-        checkOverflow();
+        checkOverflow(r.getUuid());
         storage[count++] = r;
     }
 

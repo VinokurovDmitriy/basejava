@@ -1,4 +1,4 @@
-package com.urise.webapp.storage;
+package com.urise.webapp;
 
 import com.urise.webapp.model.*;
 
@@ -77,12 +77,10 @@ public class ResumeTestData {
         return Arrays.stream(data).toList();
     }
 
-    public static void main(String[] args) {
+    public Resume getResume(String fullName) {
         setContacts();
         setSections();
-        Resume r = new Resume("Григорий Кислин", contacts, sections);
-        System.out.println(r);
-
+        return new Resume(fullName, contacts, sections);
     }
     private static List<Organization> getExperience() {
         final List<Organization> experience = new ArrayList<>();

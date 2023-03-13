@@ -45,9 +45,9 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         return storage[(int) resumeKey];
     }
 
-    protected void checkOverflow() {
+    protected void checkOverflow(String uuid) {
         if (count == MAX_COUNT) {
-            throw new StorageException("Хранилище переполнено");
+            throw new StorageException("Хранилище переполнено", uuid);
         }
     }
 }

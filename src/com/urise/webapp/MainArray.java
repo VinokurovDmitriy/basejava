@@ -35,11 +35,11 @@ public class MainArray {
                 case "list" -> printAll();
                 case "size" -> System.out.println(ARRAY_STORAGE.getSize());
                 case "save" -> {
-//                    ARRAY_STORAGE.save(new Resume(fullName, objective, achievment));
+                    ARRAY_STORAGE.save(new Resume(fullName));
                     printAll();
                 }
                 case "update" -> {
-//                    ARRAY_STORAGE.update(new Resume(uuid, objective, achievment) , fullName);
+                    ARRAY_STORAGE.update(new Resume(uuid, fullName), fullName);
                     printAll();
                 }
                 case "delete" -> {
