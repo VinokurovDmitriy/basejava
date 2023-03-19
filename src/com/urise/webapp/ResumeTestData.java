@@ -159,7 +159,7 @@ public class ResumeTestData {
                         new Organization.Period("09/1984", "06/1987", "Закончил с отличием")}));
         return education;
     }
-    public Resume getResume(String uuid, String fullName) {
+    public static Resume getResume(String uuid, String fullName) {
         Resume r = new Resume(uuid, fullName);
         setContacts();
         setSections();
