@@ -85,14 +85,14 @@ public class ResumeTestData {
     private static List<Organization> getExperience() {
         final List<Organization> experience = new ArrayList<>();
         experience.add(new Organization("javaops.ru", "Java Online Projects",
-                new Organization.PeriodInfo[]{new Organization.PeriodInfo("10/2013", null, "Автор проекта.",
+                new Organization.Period[]{new Organization.Period("10/2013", null, "Автор проекта.",
                         "Создание, " + "организация и проведение Java онлайн проектов и стажировок.")}));
         experience.add(new Organization("wrike.com","Wrike",
-                new Organization.PeriodInfo[]{new Organization.PeriodInfo("10/2014", "01/2016",
+                new Organization.Period[]{new Organization.Period("10/2014", "01/2016",
                         "Старший разработчик (backend)", "Проектирование и разработка онлайн платформы управления проектами Wrike" +
                         " (Java 8 API, Maven, Spring, MyBatis, Guava, Vaadin, PostgreSQL, Redis). Двухфакторная аутентификация," +
                         " авторизация по OAuth1, OAuth2, JWT SSO.")}));
-        experience.add(new Organization(null, "RIT Center", new Organization.PeriodInfo[]{new Organization.PeriodInfo(
+        experience.add(new Organization(null, "RIT Center", new Organization.Period[]{new Organization.Period(
                 "04/2012", "10/2014",
                 "Java архитектор", "Организация процесса разработки системы ERP для разных окружений: релизная" +
                 " политика, версионирование, ведение CI (Jenkins), миграция базы (кастомизация Flyway), конфигурирование " +
@@ -101,29 +101,29 @@ public class ResumeTestData {
                 "Интеграция Alfresco JLAN для online редактирование из браузера документов MS Office. Maven + " +
                 "plugin development, Ant, Apache Commons, Spring security, Spring MVC, Tomcat,WSO2, xcmis, " +
                 "OpenCmis, Bonita, Python scripting, Unix shell remote scripting via ssh tunnels, PL/Python")}));
-        experience.add(new Organization("luxoft.ru","Luxoft (Deutsche Bank)", new Organization.PeriodInfo[]{new Organization.PeriodInfo(
+        experience.add(new Organization("luxoft.ru","Luxoft (Deutsche Bank)", new Organization.Period[]{new Organization.Period(
                 "12/2010", "04/2012", "Ведущий программист",
                 "Участие в проекте Deutsche Bank CRM (WebLogic, Hibernate," +
                         " Spring, Spring MVC, SmartGWT, GWT, Jasper, Oracle). Реализация клиентской и серверной " +
                         "части CRM. Реализация RIA-приложения для администрирования, мониторинга и анализа " +
                         "результатов в области алгоритмического трейдинга. JPA, Spring, Spring-MVC, GWT, " +
                         "ExtGWT (GXT), Highstock, Commet, HTML5.")}));
-        experience.add(new Organization("yota.ru", "Yota", new Organization.PeriodInfo[]{new Organization.PeriodInfo(
+        experience.add(new Organization("yota.ru", "Yota", new Organization.Period[]{new Organization.Period(
                 "03/2007", "06/2008", "Ведущий специалист",
                 "Реализация клиентской (Eclipse RCP) и серверной (JBoss 4.2, Hibernate 3.0, Tomcat, JMS) частей " +
                         "кластерного J2EE приложения (OLAP, Data mining).)")}));
-        experience.add(new Organization("enkata.com","Enkata", new Organization.PeriodInfo[]{new Organization.PeriodInfo(
+        experience.add(new Organization("enkata.com","Enkata", new Organization.Period[]{new Organization.Period(
                 "10/2014", "01/2016",
                 "Разработчик ПО", "Проектирование и разработка онлайн платформы управления проектами Wrike " +
                 "(Java 8 API, Maven, Spring, MyBatis, Guava, Vaadin, PostgreSQL, Redis). Двухфакторная аутентификация, " +
                 "авторизация по OAuth1, OAuth2, JWT SSO.")}));
         experience.add(new Organization("siemens.com/ru/ru/home.html", "Siemens AG",
-                new Organization.PeriodInfo[]{new Organization.PeriodInfo(
+                new Organization.Period[]{new Organization.Period(
                         "01/2005", "02/2007", "Разработчик ПО",
                 "Разработка информационной модели, проектирование интерфейсов," +
                         " реализация и отладка ПО на мобильной IN платформе Siemens @vantage (Java, Unix).")}));
         experience.add(new Organization( "alcatel.ru", "Alcatel",
-                new Organization.PeriodInfo[]{new Organization.PeriodInfo("09/1997", "01/2005",
+                new Organization.Period[]{new Organization.Period("09/1997", "01/2005",
                 "Инженер по аппаратному и программному тестированию",
                 "Тестирование, отладка, внедрение ПО цифровой телефонной станции Alcatel 1000 S12 (CHILL, ASM).")}));
         return experience;
@@ -132,31 +132,39 @@ public class ResumeTestData {
     private static List<Organization> getEducation() {
         final List<Organization> education = new ArrayList<>();
         education.add(new Organization("coursera.org/course/progfun", "Coursera",
-                new Organization.PeriodInfo[]{new Organization.PeriodInfo("03/2013", "05/2013",
+                new Organization.Period[]{new Organization.Period("03/2013", "05/2013",
                         "'Functional Programming Principles in Scala' by Martin Odersky")}));
 
         education.add(new Organization("luxoft-training.ru/training/catalog/course.html?ID=22366", "Luxoft",
-                new Organization.PeriodInfo[]{new Organization.PeriodInfo("03/2011", "04/2011",
+                new Organization.Period[]{new Organization.Period("03/2011", "04/2011",
                         "Курс 'Объектно-ориентированный анализ ИС. Концептуальное моделирование на UML.")}));
         education.add(new Organization("siemens.ru", "Siemens AG",
-                        new Organization.PeriodInfo[]{new Organization.PeriodInfo("03/2011", "04/2011",
+                        new Organization.Period[]{new Organization.Period("03/2011", "04/2011",
                                 "Курс 'Объектно-ориентированный анализ ИС. Концептуальное моделирование на UML."
                         )}));
         education.add(new Organization("siemens.ru", "Siemens AG",
-                new Organization.PeriodInfo[]{new Organization.PeriodInfo("01/2005", "04/2005",
+                new Organization.Period[]{new Organization.Period("01/2005", "04/2005",
                         "3 месяца обучения мобильным IN сетям (Берлин)")}));
         education.add(new Organization("alcatel.ru", "Alcatel",
-                new Organization.PeriodInfo[]{new Organization.PeriodInfo("09/1997", "03/1998",
+                new Organization.Period[]{new Organization.Period("09/1997", "03/1998",
                 "6 месяцев обучения цифровым телефонным сетям (Москва)")}));
         education.add(new Organization("ifmo.ru", "Санкт-Петербургский национальный исследовательский " +
                         "университет информационных технологий, механики и оптики",
-                new Organization.PeriodInfo[]{
-                        new Organization.PeriodInfo("09/1993", "07/1996", "Аспирантура (программист С, С++)"),
-                        new Organization.PeriodInfo("09/1987", "07/1993", "Инженер (программист Fortran, C)")
+                new Organization.Period[]{
+                        new Organization.Period("09/1993", "07/1996", "Аспирантура (программист С, С++)"),
+                        new Organization.Period("09/1987", "07/1993", "Инженер (программист Fortran, C)")
                 }));
         education.add(new Organization("mipt.ru", "Заочная физико-техническая школа при МФТИ",
-                new Organization.PeriodInfo[]{
-                        new Organization.PeriodInfo("09/1984", "06/1987", "Закончил с отличием")}));
+                new Organization.Period[]{
+                        new Organization.Period("09/1984", "06/1987", "Закончил с отличием")}));
         return education;
+    }
+    public Resume getResume(String uuid, String fullName) {
+        Resume r = new Resume(uuid, fullName);
+        setContacts();
+        setSections();
+        r.setSections(sections);
+        r.setContacts(contacts);
+        return r;
     }
 }

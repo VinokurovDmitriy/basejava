@@ -1,4 +1,9 @@
 package com.urise.webapp.storage;
 
-public class FileStorageTest {
+import java.io.File;
+
+public class FileStorageTest extends AbstractStorageTest {
+    public FileStorageTest() {
+        super(new FileStorage(new File("./storage")));
+    }
 }

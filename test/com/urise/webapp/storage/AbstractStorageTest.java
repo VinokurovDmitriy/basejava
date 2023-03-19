@@ -6,6 +6,8 @@ import com.urise.webapp.model.Resume;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +35,7 @@ public abstract class AbstractStorageTest {
     }
 
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
         storage.clear();
         storage.save(resume_1);
         storage.save(resume_2);
@@ -41,7 +43,7 @@ public abstract class AbstractStorageTest {
     }
 
     @Test
-    public void clear() {
+    public void clear() throws IOException {
         storage.clear();
         assertSize(0);
         assertEquals(new ArrayList<>(), storage.getAllSorted());
@@ -73,7 +75,7 @@ public abstract class AbstractStorageTest {
     }
 
     @Test(expected = NotExistStorageException.class)
-    public void delete() {
+    public void delete() throws FileNotFoundException {
         assertSize(3);
         storage.delete(UUID_1);
         storage.get(UUID_1);
@@ -111,7 +113,7 @@ public abstract class AbstractStorageTest {
     }
 
     @Test(expected = NotExistStorageException.class)
-    public void deleteNotExist() {
+    public void deleteNotExist() throws FileNotFoundException {
         assertSize(3);
         storage.delete(DUMMY);
     }

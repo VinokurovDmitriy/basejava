@@ -5,7 +5,6 @@ import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.model.Resume;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
@@ -22,7 +21,7 @@ public abstract class AbstractStorage<SK> implements Storage {
 
     protected abstract boolean isExistResume(SK resumeKey);
 
-    protected abstract void doSave(Resume r, SK resumeKey) throws IOException;
+    protected abstract void doSave(Resume r, SK resumeKey);
 
     protected abstract void doUpdate(Resume r, SK resumeKey);
 
@@ -57,7 +56,7 @@ public abstract class AbstractStorage<SK> implements Storage {
         return listStorage;
     };
     @Override
-    public void delete(String uuid) {
+    public void delete(String uuid) throws FileNotFoundException {
         SK searchKey = getExistingSearchKey(uuid);
         doDelete(searchKey);
     }

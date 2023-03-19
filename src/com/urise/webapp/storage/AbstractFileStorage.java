@@ -59,21 +59,22 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     }
 
     @Override
-    protected Resume doGet(File directory) {
-        return doRead(directory);
+    protected Resume doGet(File file) {
+        return doRead(file);
     }
 
     @Override
-    protected void doDelete(File directory) throws FileNotFoundException {
-        if(!directory.delete()) {
+    protected void doDelete(File file) throws FileNotFoundException {
+        if(!file.delete()) {
             throw new FileNotFoundException();
         };
     }
 
     @Override
     public void clear() throws IOException {
-        new File("./storage").delete();
-        new File("./storage").createNewFile();
+        for(File file : Objects.requireNonNull(directory.listFiles())) {
+            file.delete();
+        }
     }
 
     @Override

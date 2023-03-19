@@ -9,9 +9,11 @@ public enum SectionType {
     EDUCATION("Образование");
 
     private final String sectionName;
+
     SectionType(String sectionName) {
         this.sectionName = sectionName;
     }
+
     public String getSectionName() {
         return sectionName;
     }

@@ -1,6 +1,7 @@
 package com.urise.webapp.model;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ListSection extends AbstractSection {
 
@@ -19,8 +20,19 @@ public class ListSection extends AbstractSection {
         return result.toString();
     }
 
-    @Override
-    public Object getElement(Object key) {
+    public Object getSection(Object key) {
         return section.get((int) key);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ListSection that)) return false;
+        return section.equals(that.section);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(section);
     }
 }

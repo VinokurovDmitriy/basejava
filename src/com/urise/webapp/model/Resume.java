@@ -11,8 +11,8 @@ public class Resume implements Comparable<Resume>{
 
     private final String uuid;
     private final String fullName;
-    private final Map<SectionType, AbstractSection> sections;
-    private final Map<ContactsType, String> contacts;
+    private Map<SectionType, AbstractSection> sections;
+    private Map<ContactsType, String> contacts;
 
     public Resume(String fullName, Map<ContactsType, String> contacts, Map<SectionType, AbstractSection> sections) {
         this.contacts = contacts;
@@ -20,12 +20,14 @@ public class Resume implements Comparable<Resume>{
         this.sections = sections;
         this.uuid = UUID.randomUUID().toString();
     }
+
     public Resume(String uuid, String fullName) {
         this.fullName = fullName;
         this.uuid = uuid;
         this.contacts = null;
         this.sections = null;
     }
+
     public Resume(String fullName) {
         this.fullName = fullName;
         this.contacts = null;
@@ -34,8 +36,17 @@ public class Resume implements Comparable<Resume>{
     }
 
     public String getUuid() {return uuid;}
+
     public String getFullName() {
         return this.fullName;
+    }
+
+    public void setContacts(Map<ContactsType, String> contacts) {
+        this.contacts = contacts;
+    }
+
+    public void setSections(Map<SectionType, AbstractSection> sections) {
+        this.sections = sections;
     }
 
     @Override
@@ -53,26 +64,12 @@ public class Resume implements Comparable<Resume>{
 
     @Override
     public String toString() {
-        return fullName + contactsToString() + sectionsToString();
+        return fullName + contacts + sections;
     }
 
     @Override
     public int compareTo(Resume o) {
         int cmp = fullName.compareTo(o.getFullName());
         return (cmp == 0) ? uuid.compareTo(o.getUuid()) : cmp;
-    }
-    private String contactsToString() {
-        StringBuilder result = new StringBuilder();
-        for(Map.Entry<ContactsType, String> contact : contacts.entrySet()) {
-            result.append(contact.getKey().getLabel()).append(contact.getValue()).append("\n");
-        }
-        return "\n\n" + result;
-    }
-    private String sectionsToString() {
-        StringBuilder result = new StringBuilder();
-        for(Map.Entry<SectionType, AbstractSection> sectionEntry : sections.entrySet()) {
-            result.append(sectionEntry.getKey().getSectionName()).append("\n\n").append(sectionEntry.getValue()).append("\n\n");
-        }
-        return "\n\n" + result;
     }
 }
