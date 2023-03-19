@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -20,11 +21,14 @@ public abstract class AbstractStorageTest {
 
     protected final Storage storage;
     private static final String UUID_1 = "uuid_1";
-    private static final Resume resume_1 = new Resume(UUID_1, "Bill");
+//    private static final Resume resume_1 = new Resume(UUID_1, "Bill");
     private static final String UUID_2 = "uuid_2";
-    private static final Resume resume_2 = new Resume(UUID_2, "John");
+//    private static final Resume resume_2 = new Resume(UUID_2, "John");
     private static final String UUID_3 = "uuid_3";
-    private static final Resume resume_3 = new Resume(UUID_3, "Sara");
+//    private static final Resume resume_3 = new Resume(UUID_3, "Sara");
+    Resume resume_1 = ResumeTestData.getResume(UUID_1, "Bill");
+    Resume resume_2 = ResumeTestData.getResume(UUID_2, "Sara");
+    Resume resume_3 = ResumeTestData.getResume(UUID_3, "Mike");
     private static final String UUID_4 = "uuid_4";
     private static final Resume resume_4 = new Resume(UUID_4, "Jessica");
     private static final String DUMMY = "dummy";
@@ -39,15 +43,9 @@ public abstract class AbstractStorageTest {
     public void setUp() throws IOException {
         storage.clear();
 
-        Resume r1 = ResumeTestData.getResume(UUID_1, "Bill");
-        Resume r2 = ResumeTestData.getResume(UUID_2, "Sara");
-        Resume r3 = ResumeTestData.getResume(UUID_3, "Mike");
-        storage.save(r1);
-        storage.save(r2);
-        storage.save(r3);
-//        storage.save(resume_1);
-//        storage.save(resume_2);
-//        storage.save(resume_3);
+        storage.save(resume_1);
+        storage.save(resume_2);
+        storage.save(resume_3);
     }
 
     @Test
@@ -77,6 +75,7 @@ public abstract class AbstractStorageTest {
     @Test
     public void get() {
         assertSize(3);
+        System.out.println();
         assertGet(resume_1);
         assertGet(resume_2);
         assertGet(resume_3);
@@ -93,8 +92,10 @@ public abstract class AbstractStorageTest {
     @Test
     public void getAllSorted() {
         assertSize(3);
+        List<Resume> sortedStorage = Arrays.asList(resume_3, resume_1, resume_2);
+        Collections.sort(sortedStorage);
         List<Resume> list = storage.getAllSorted();
-        assertEquals(list, Arrays.asList(resume_1, resume_2, resume_3));
+        assertEquals(list, sortedStorage);
     }
 
     @Test

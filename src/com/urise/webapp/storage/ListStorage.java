@@ -29,7 +29,7 @@ public class ListStorage extends AbstractStorage<Integer> {
 
     @Override
     protected boolean isExistResume(Integer resumeKey) {
-        return (int) resumeKey >= 0;
+        return resumeKey >= 0;
     }
 
     @Override
@@ -44,12 +44,12 @@ public class ListStorage extends AbstractStorage<Integer> {
 
     @Override
     protected void doUpdate(Resume r, Integer resumeKey) {
-        storage.set((int) resumeKey, r);
+        storage.set(resumeKey, r);
     }
 
     @Override
     protected Resume doGet(Integer resumeKey) {
-        return storage.get((int) resumeKey);
+        return storage.get(resumeKey);
     }
 
     @Override
