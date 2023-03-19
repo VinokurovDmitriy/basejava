@@ -24,6 +24,10 @@ public abstract class AbstractStorageTest {
     private static final String UUID_2 = "uuid_2";
     private static final String UUID_3 = "uuid_3";
     private static final String UUID_4 = "uuid_4";
+    private static final String NAME_1 = "name_1";
+    private static final String NAME_2 = "name_2";
+    private static final String NAME_3 = "name_3";
+    private static final String NAME_4 = "name_4";
     private static final Resume RESUME_1;
     private static final Resume RESUME_2;
     private static final Resume RESUME_3;
@@ -32,14 +36,14 @@ public abstract class AbstractStorageTest {
     protected static final String TEST_NAME = "testName";
 
     static {
-//        RESUME_1 = new Resume(UUID_1, "Bill");
-//        RESUME_2 = new Resume(UUID_2, "John");
-//        RESUME_3 = new Resume(UUID_2, "Mike");
-//        RESUME_4 = new Resume(UUID_2, DUMMY);
-        RESUME_1 = ResumeTestData.getResume(UUID_1, "Bran");
-        RESUME_2 = ResumeTestData.getResume(UUID_2, "Ned");
-        RESUME_3 = ResumeTestData.getResume(UUID_3, "Robert");
-        RESUME_4 = ResumeTestData.getResume(UUID_3, "Hodor");
+//        RESUME_1 = new Resume(UUID_1, NAME_1);
+//        RESUME_2 = new Resume(UUID_2, NAME_2);
+//        RESUME_3 = new Resume(UUID_2, NAME_3);
+//        RESUME_4 = new Resume(UUID_2, NAME_4);
+        RESUME_1 = ResumeTestData.getResume(UUID_1, NAME_1);
+        RESUME_2 = ResumeTestData.getResume(UUID_2, NAME_2);
+        RESUME_3 = ResumeTestData.getResume(UUID_3, NAME_3);
+        RESUME_4 = ResumeTestData.getResume(UUID_4, NAME_4);
     }
 
 
