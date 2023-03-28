@@ -10,14 +10,16 @@ import java.util.List;
 import java.util.Objects;
 
 public abstract class AbstractFileStorage extends AbstractStorage<File> {
+
     private final File directory;
+
     AbstractFileStorage(File directory) {
-        Objects.requireNonNull(directory, "directory is not be null");
-        if(!directory.isDirectory()) {
-            throw new IllegalArgumentException(directory.getAbsolutePath() + " is not directory");
+        checkDirectory();
+        if (!directory.isDirectory()) {
+            throw new StorageException(directory.getAbsolutePath() + " is not directory");
         }
-        if(!directory.canRead() || !directory.canWrite()) {
-            throw new IllegalArgumentException(directory.getAbsolutePath() + " is not readable/writable");
+        if (!directory.canRead() || !directory.canWrite()) {
+            throw new StorageException(directory.getAbsolutePath() + " is not readable/writable");
         }
         this.directory = directory;
     }
@@ -30,9 +32,9 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     @Override
     protected List<Resume> doCopyAll() {
         List<Resume> files = null;
-        for ( File file : Objects.requireNonNull(new File("./storage").listFiles())){
+        for (File file : Objects.requireNonNull(directory.listFiles())) {
             if (file.isFile()) {
-                files.add(doRead(file));
+                files.add(doGet(file));
             }
         }
         return files;
@@ -55,33 +57,50 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
 
     @Override
     protected void doUpdate(Resume r, File file) {
-        doWrite(r, file);
+        try {
+            doWrite(r, file);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     protected Resume doGet(File file) {
-        return doRead(file);
+        try {
+            return doRead(file);
+        } catch (IOException ignored) {
+            return null;
+        }
     }
 
     @Override
     protected void doDelete(File file) throws FileNotFoundException {
-        if(!file.delete()) {
+        if (!file.delete()) {
             throw new FileNotFoundException();
-        };
+        }
     }
 
     @Override
     public void clear() throws IOException {
-        for(File file : Objects.requireNonNull(directory.listFiles())) {
-            file.delete();
+        checkDirectory();
+        for (File file : Objects.requireNonNull(directory.listFiles())) {
+            doDelete(file);
         }
     }
 
     @Override
     public int getSize() {
+        checkDirectory();
         return Objects.requireNonNull(directory.listFiles()).length;
     }
 
-    public abstract void doWrite(Resume r, File directory);
-    public abstract Resume doRead(File file);
+    private void checkDirectory() {
+        if (directory == null) {
+            throw new StorageException("directory is not be null");
+        }
+    }
+
+    public abstract void doWrite(Resume r, File directory) throws IOException;
+
+    public abstract Resume doRead(File file) throws IOException;
 }

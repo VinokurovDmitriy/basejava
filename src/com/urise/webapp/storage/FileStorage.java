@@ -14,11 +14,15 @@ public class FileStorage extends AbstractFileStorage {
 
     @Override
     public void doWrite(Resume r, File directory) {
-
     }
 
     @Override
-    public Resume doRead(File file) {
+    public Resume doRead(File File) {
+        return null;
+    }
+
+    @Override
+    public Resume doGet(File file) {
         return null;
     }
 }
